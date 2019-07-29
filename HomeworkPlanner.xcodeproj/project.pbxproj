@@ -8,22 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		362CFF6422EFA7F3006FDFAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF6322EFA7F3006FDFAF /* AppDelegate.swift */; };
-		362CFF6622EFA7F3006FDFAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF6522EFA7F3006FDFAF /* ViewController.swift */; };
-		362CFF6922EFA7F3006FDFAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362CFF6722EFA7F3006FDFAF /* Main.storyboard */; };
+		362CFF6622EFA7F3006FDFAF /* TaskCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF6522EFA7F3006FDFAF /* TaskCreationViewController.swift */; };
+		362CFF6922EFA7F3006FDFAF /* TaskCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362CFF6722EFA7F3006FDFAF /* TaskCreation.storyboard */; };
 		362CFF6C22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF6A22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld */; };
 		362CFF6E22EFA7F5006FDFAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 362CFF6D22EFA7F5006FDFAF /* Assets.xcassets */; };
 		362CFF7122EFA7F5006FDFAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362CFF6F22EFA7F5006FDFAF /* LaunchScreen.storyboard */; };
+		362CFF7C22EFA96E006FDFAF /* TaskCreationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF7B22EFA96E006FDFAF /* TaskCreationModel.swift */; };
+		362CFF7F22EFA990006FDFAF /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF7E22EFA990006FDFAF /* TaskListViewController.swift */; };
+		362CFF8122EFA99D006FDFAF /* TaskListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8022EFA99D006FDFAF /* TaskListModel.swift */; };
+		362CFF8322EFA9B1006FDFAF /* TaskList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362CFF8222EFA9B1006FDFAF /* TaskList.storyboard */; };
+		362CFF8622EFA9D5006FDFAF /* TaskCalendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362CFF8522EFA9D5006FDFAF /* TaskCalendar.storyboard */; };
+		362CFF8822EFA9E9006FDFAF /* TaskCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8722EFA9E9006FDFAF /* TaskCalendarViewController.swift */; };
+		362CFF8A22EFA9FC006FDFAF /* TaskCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */; };
+		362CFF8D22EFAB44006FDFAF /* HomeworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		362CFF6022EFA7F3006FDFAF /* HomeworkPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeworkPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		362CFF6322EFA7F3006FDFAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		362CFF6522EFA7F3006FDFAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		362CFF6822EFA7F3006FDFAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		362CFF6522EFA7F3006FDFAF /* TaskCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreationViewController.swift; sourceTree = "<group>"; };
+		362CFF6822EFA7F3006FDFAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TaskCreation.storyboard; sourceTree = "<group>"; };
 		362CFF6B22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HomeworkPlanner.xcdatamodel; sourceTree = "<group>"; };
 		362CFF6D22EFA7F5006FDFAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		362CFF7022EFA7F5006FDFAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		362CFF7222EFA7F5006FDFAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		362CFF7B22EFA96E006FDFAF /* TaskCreationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreationModel.swift; sourceTree = "<group>"; };
+		362CFF7E22EFA990006FDFAF /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
+		362CFF8022EFA99D006FDFAF /* TaskListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListModel.swift; sourceTree = "<group>"; };
+		362CFF8222EFA9B1006FDFAF /* TaskList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskList.storyboard; sourceTree = "<group>"; };
+		362CFF8522EFA9D5006FDFAF /* TaskCalendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskCalendar.storyboard; sourceTree = "<group>"; };
+		362CFF8722EFA9E9006FDFAF /* TaskCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarViewController.swift; sourceTree = "<group>"; };
+		362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarModel.swift; sourceTree = "<group>"; };
+		362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +72,63 @@
 		362CFF6222EFA7F3006FDFAF /* HomeworkPlanner */ = {
 			isa = PBXGroup;
 			children = (
-				362CFF6322EFA7F3006FDFAF /* AppDelegate.swift */,
-				362CFF6522EFA7F3006FDFAF /* ViewController.swift */,
-				362CFF6722EFA7F3006FDFAF /* Main.storyboard */,
-				362CFF6D22EFA7F5006FDFAF /* Assets.xcassets */,
-				362CFF6F22EFA7F5006FDFAF /* LaunchScreen.storyboard */,
-				362CFF7222EFA7F5006FDFAF /* Info.plist */,
+				362CFF8B22EFAA5D006FDFAF /* Task */,
+				362CFF7922EFA8BD006FDFAF /* Supporting Files */,
 				362CFF6A22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld */,
 			);
 			path = HomeworkPlanner;
+			sourceTree = "<group>";
+		};
+		362CFF7922EFA8BD006FDFAF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				362CFF6D22EFA7F5006FDFAF /* Assets.xcassets */,
+				362CFF6F22EFA7F5006FDFAF /* LaunchScreen.storyboard */,
+				362CFF7222EFA7F5006FDFAF /* Info.plist */,
+				362CFF6322EFA7F3006FDFAF /* AppDelegate.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		362CFF7A22EFA946006FDFAF /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				362CFF6722EFA7F3006FDFAF /* TaskCreation.storyboard */,
+				362CFF6522EFA7F3006FDFAF /* TaskCreationViewController.swift */,
+				362CFF7B22EFA96E006FDFAF /* TaskCreationModel.swift */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		362CFF7D22EFA975006FDFAF /* List */ = {
+			isa = PBXGroup;
+			children = (
+				362CFF7E22EFA990006FDFAF /* TaskListViewController.swift */,
+				362CFF8022EFA99D006FDFAF /* TaskListModel.swift */,
+				362CFF8222EFA9B1006FDFAF /* TaskList.storyboard */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		362CFF8422EFA9BB006FDFAF /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				362CFF8522EFA9D5006FDFAF /* TaskCalendar.storyboard */,
+				362CFF8722EFA9E9006FDFAF /* TaskCalendarViewController.swift */,
+				362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		362CFF8B22EFAA5D006FDFAF /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				362CFF7A22EFA946006FDFAF /* Creation */,
+				362CFF7D22EFA975006FDFAF /* List */,
+				362CFF8422EFA9BB006FDFAF /* Calendar */,
+				362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +190,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				362CFF7122EFA7F5006FDFAF /* LaunchScreen.storyboard in Resources */,
+				362CFF8622EFA9D5006FDFAF /* TaskCalendar.storyboard in Resources */,
+				362CFF8322EFA9B1006FDFAF /* TaskList.storyboard in Resources */,
 				362CFF6E22EFA7F5006FDFAF /* Assets.xcassets in Resources */,
-				362CFF6922EFA7F3006FDFAF /* Main.storyboard in Resources */,
+				362CFF6922EFA7F3006FDFAF /* TaskCreation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,21 +204,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				362CFF6622EFA7F3006FDFAF /* ViewController.swift in Sources */,
+				362CFF8122EFA99D006FDFAF /* TaskListModel.swift in Sources */,
+				362CFF6622EFA7F3006FDFAF /* TaskCreationViewController.swift in Sources */,
+				362CFF7F22EFA990006FDFAF /* TaskListViewController.swift in Sources */,
 				362CFF6422EFA7F3006FDFAF /* AppDelegate.swift in Sources */,
+				362CFF8D22EFAB44006FDFAF /* HomeworkTask.swift in Sources */,
+				362CFF8A22EFA9FC006FDFAF /* TaskCalendarModel.swift in Sources */,
 				362CFF6C22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld in Sources */,
+				362CFF8822EFA9E9006FDFAF /* TaskCalendarViewController.swift in Sources */,
+				362CFF7C22EFA96E006FDFAF /* TaskCreationModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		362CFF6722EFA7F3006FDFAF /* Main.storyboard */ = {
+		362CFF6722EFA7F3006FDFAF /* TaskCreation.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				362CFF6822EFA7F3006FDFAF /* Base */,
 			);
-			name = Main.storyboard;
+			name = TaskCreation.storyboard;
 			sourceTree = "<group>";
 		};
 		362CFF6F22EFA7F5006FDFAF /* LaunchScreen.storyboard */ = {

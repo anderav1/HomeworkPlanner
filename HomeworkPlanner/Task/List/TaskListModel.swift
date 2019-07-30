@@ -1,9 +1,20 @@
-//
-//  AssignmentListModel.swift
-//  HomeworkPlanner
-//
-//  Created by Anderson, Lexi (UMSL-Student) on 7/29/19.
-//  Copyright © 2019 Anderson, Lexi (UMSL-Student). All rights reserved.
-//
+import EventKit
 
-import Foundation
+protocol HWTaskListModelDelegate: class {
+    func dataRefreshed()
+}
+
+final class HWTaskListModel {
+    //private let hwListPersistence:
+    private var homeworkTasks: [HomeworkTask]
+    private(set) var eventStore: EKEventStore
+    
+    private weak var delegate: HWTaskListModelDelegate?
+    
+    var count: Int { return homeworkTasks.count }
+    
+    init(delegate: HWTaskListModelDelegate) {
+        self.delegate = delegate
+        
+    }
+}

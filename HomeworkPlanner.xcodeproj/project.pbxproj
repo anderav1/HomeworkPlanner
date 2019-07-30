@@ -21,6 +21,7 @@
 		362CFF8822EFA9E9006FDFAF /* TaskCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8722EFA9E9006FDFAF /* TaskCalendarViewController.swift */; };
 		362CFF8A22EFA9FC006FDFAF /* TaskCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */; };
 		362CFF8D22EFAB44006FDFAF /* HomeworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */; };
+		C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarModel.swift; sourceTree = "<group>"; };
 		362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTask.swift; sourceTree = "<group>"; };
 		362CFF9022EFC59C006FDFAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTaskPersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +75,9 @@
 		362CFF6222EFA7F3006FDFAF /* HomeworkPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				C4EECF4022F0ADC300F634ED /* Persistence */,
 				362CFF8B22EFAA5D006FDFAF /* Task */,
 				362CFF7922EFA8BD006FDFAF /* Supporting Files */,
-				362CFF6A22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld */,
 				362CFF9022EFC59C006FDFAF /* README.md */,
 			);
 			path = HomeworkPlanner;
@@ -131,6 +133,15 @@
 				362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */,
 			);
 			path = Task;
+			sourceTree = "<group>";
+		};
+		C4EECF4022F0ADC300F634ED /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				362CFF6A22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld */,
+				C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */,
 				362CFF8122EFA99D006FDFAF /* TaskListModel.swift in Sources */,
 				362CFF6622EFA7F3006FDFAF /* TaskCreationViewController.swift in Sources */,
 				362CFF7F22EFA990006FDFAF /* TaskListViewController.swift in Sources */,

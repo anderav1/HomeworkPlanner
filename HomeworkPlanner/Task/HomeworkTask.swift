@@ -1,9 +1,21 @@
-import Foundation
+import EventKit // for generating events and alarms
 
-struct HomeworkAlert: Codable {
-    let id: UUID
-    let date: Date
-    let text: String
+class HomeworkAlert: EKReminder, Codable {
+    
+    //func addAlarm(_ alarm: EKAlarm)
+    //removeAlarm(_:)
+    
+    init(eventStore: EKEventStore) {
+    }
+    
+/* EKReminder properties:
+     enum EKReminderPriority // case high, low, medium, none
+     var priority: Int
+     var startDateComponents: DateComponents?
+     var dueDateComponents: DateComponents?
+     var isCompleted: Bool
+     var completionDate: Date?
+ */
 }
 
 struct HomeworkTask: Codable {
@@ -11,8 +23,8 @@ struct HomeworkTask: Codable {
     let name: String
     let course: String
     let deadline: Date
-    let description: String?
-    let alert: HomeworkAlert?
+    let taskDescription: String?
+    let alert: EKReminder?
 }
 
 extension HomeworkTask {
@@ -22,13 +34,21 @@ extension HomeworkTask {
         self.name = name
         self.course = course
         self.deadline = deadline
-        self.description = description
+        self.taskDescription = description
         self.alert = alert
     }
     
     // copy initializer
-    init(id: UUID, name: String, course: String, deadline: Date, description: String?, alert: HomeworkAlert?) {
-        self.id = id
-        self.name = name
+//    init(id: UUID, name: String, course: String, deadline: Date, description: String?, alert: HomeworkAlert?) {
+//        self.id = id
+//        self.name = name
+//        self.course = course
+//        self.deadline = deadline
+//        self.taskDescription = description
+//        self.alert = alert
+//    }
+    
+    func copyWith(name: String, course: String, deadline: Date, description: String?, alert: HomeworkAlert?) -> HomeworkTask {
+        return HomeworkTask(id: self.id, name: name, course: course, deadline: deadline, taskDescription: description, alert: alert)
     }
 }

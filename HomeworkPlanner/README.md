@@ -3,7 +3,7 @@
 Keep track of upcoming assignments
 
 ## Audience
-Students
+University & high school students
 
 ## User Stories
 * User can add an assignment with a title, course, deadline (date & time), and optional description/notes and reminder alert
@@ -14,7 +14,7 @@ Students
 * User can edit and delete existing assignments or mark them as completed
 * User can configure a user profile with a weekly course schedule
 
-## Stretch Goals:
+## Stretch Goals
 * *User can choose between a list and a calendar view for upcoming assignments (top-priority stretch goal; this is the one I most want to implement, if possible)
 * User can search the assignment list for a specific assignment
 * Can search for keywords in the title, course, or description

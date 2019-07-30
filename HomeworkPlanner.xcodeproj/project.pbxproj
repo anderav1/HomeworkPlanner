@@ -40,6 +40,7 @@
 		362CFF8722EFA9E9006FDFAF /* TaskCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarViewController.swift; sourceTree = "<group>"; };
 		362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarModel.swift; sourceTree = "<group>"; };
 		362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTask.swift; sourceTree = "<group>"; };
+		362CFF9022EFC59C006FDFAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 				362CFF8B22EFAA5D006FDFAF /* Task */,
 				362CFF7922EFA8BD006FDFAF /* Supporting Files */,
 				362CFF6A22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld */,
+				362CFF9022EFC59C006FDFAF /* README.md */,
 			);
 			path = HomeworkPlanner;
 			sourceTree = "<group>";

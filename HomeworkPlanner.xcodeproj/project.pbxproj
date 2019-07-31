@@ -21,6 +21,7 @@
 		362CFF8822EFA9E9006FDFAF /* TaskCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8722EFA9E9006FDFAF /* TaskCalendarViewController.swift */; };
 		362CFF8A22EFA9FC006FDFAF /* TaskCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */; };
 		362CFF8D22EFAB44006FDFAF /* HomeworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */; };
+		36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */; };
 		C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCalendarModel.swift; sourceTree = "<group>"; };
 		362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTask.swift; sourceTree = "<group>"; };
 		362CFF9022EFC59C006FDFAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTaskPersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +112,7 @@
 				362CFF7E22EFA990006FDFAF /* TaskListViewController.swift */,
 				362CFF8022EFA99D006FDFAF /* TaskListModel.swift */,
 				362CFF8222EFA9B1006FDFAF /* TaskList.storyboard */,
+				36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				362CFF6C22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld in Sources */,
 				362CFF8822EFA9E9006FDFAF /* TaskCalendarViewController.swift in Sources */,
 				362CFF7C22EFA96E006FDFAF /* TaskCreationModel.swift in Sources */,
+				36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

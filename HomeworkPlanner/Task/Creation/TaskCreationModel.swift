@@ -29,7 +29,7 @@ final class HWTaskCreationModel {
     private var isEditing: Bool
     
     var titleText: String { return isEditing ? "Edit Assignment" : "New Assignment" }
-    var buttonText: String { return isEditing ? "Update" : "Add" }
+    var buttonText = "Save"
     
     private weak var delegate: HWTaskCreationModelDelegate?
     
@@ -70,6 +70,6 @@ extension HWTaskCreationModel {
         let alarmDate = homeworkTask.deadline - timeInterval
         
         let alarm = EKAlarm(absoluteDate: alarmDate)
-        homeworkTask.reminder?.addAlarm(alarm)
+        homeworkTask.reminder.addAlarm(alarm)
     }
 }

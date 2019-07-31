@@ -35,27 +35,33 @@ struct HomeworkTask: Codable {
 }
 
 extension HomeworkTask {
-    init(name: String, course: String, deadline: Date, description: String?, reminder: EKReminder) {
+    init(name: String, course: String, deadline: Date, taskDescription: String?, reminder: EKReminder) {
         id = UUID()
         
         self.name = name
         self.course = course
         self.deadline = deadline
-        self.taskDescription = description
+        self.taskDescription = taskDescription
         self.reminder = reminder
     }
     
     // copy initializer
-    //    init(id: UUID, name: String, course: String, deadline: Date, description: String?, reminder: EKReminder) {
-//        self.id = id
-//        self.name = name
-//        self.course = course
-//        self.deadline = deadline
-//        self.taskDescription = description
-//        self.reminder = reminder
-//    }
+        init(id: UUID, name: String, course: String, deadline: Date, taskDescription: String?, reminder: EKReminder) {
+        self.id = id
+        self.name = name
+        self.course = course
+        self.deadline = deadline
+        self.taskDescription = taskDescription
+        self.reminder = reminder
+    }
     
-    func copyWith(name: String, course: String, deadline: Date, description: String?, reminder: EKReminder) -> HomeworkTask {
-        return HomeworkTask(id: self.id, name: name, course: course, deadline: deadline, taskDescription: description, reminder: reminder)
+    func copyWith(name: String, course: String, deadline: Date, taskDescription: String?, reminder: EKReminder) -> HomeworkTask {
+        return HomeworkTask(id: self.id, name: name, course: course, deadline: deadline, taskDescription: taskDescription, reminder: reminder)
+    }
+}
+
+extension HomeworkTask {
+    static var defaultHomeworkTask: HomeworkTask {
+        return HomeworkTask(id: UUID(), name: "", course: "", deadline: Date(), taskDescription: nil, reminder: EKReminder())
     }
 }

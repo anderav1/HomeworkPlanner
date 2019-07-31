@@ -41,6 +41,9 @@ class HWTaskCreationViewController: UIViewController {
         // configure reminder stepper and labels
         reminderStepper.minimumValue = model.minReminderValue
         reminderStepper.maximumValue = model.maxReminderValue
+        
+        addButton.setTitle(model.buttonText, for: .normal)
+        navigationItem.title = model.titleText
     }
 
 

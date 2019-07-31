@@ -1,22 +1,4 @@
-import EventKit // for generating events and alarms
-
-class HomeworkAlert: EKReminder, Codable {
-    
-    //func addAlarm(_ alarm: EKAlarm)
-    //removeAlarm(_:)
-    
-    init(eventStore: EKEventStore) {
-    }
-    
-/* EKReminder properties:
-     enum EKReminderPriority // case high, low, medium, none
-     var priority: Int
-     var startDateComponents: DateComponents?
-     var dueDateComponents: DateComponents?
-     var isCompleted: Bool
-     var completionDate: Date?
- */
-}
+import EventKit // for generating reminders and alarms
 
 struct HomeworkTask: Codable {
     let id: UUID
@@ -24,31 +6,56 @@ struct HomeworkTask: Codable {
     let course: String
     let deadline: Date
     let taskDescription: String?
-    let alert: EKReminder?
+    let reminder: EKReminder    // must decode from reminder_id
+    
+    let hwCalendar = EKEventStore.calendar(withIdentifier: "Homework Planner")
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case course
+        case deadline
+        case taskDescription = "task_description"
+        case reminder = "reminder_id"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try values.decode(UUID.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        course = try values.decode(String.self, forKey: .course)
+        deadline = try values.decode(Date.self, forKey: .deadline)
+        taskDescription = try values.decodeIfPresent(String.self, forKey: .taskDescription)
+        
+        let reminderId = try values.decode(String.self, forKey: .reminder)
+        reminder = calendarItem(withIdentifier: reminderId) as EKReminder
+        //reminder = calendarItem(withIdentifier: reminderId) as EKReminder
+    }
 }
 
 extension HomeworkTask {
-    init(name: String, course: String, deadline: Date, description: String?, alert: HomeworkAlert?) {
+    init(name: String, course: String, deadline: Date, description: String?, reminder: EKReminder) {
         id = UUID()
         
         self.name = name
         self.course = course
         self.deadline = deadline
         self.taskDescription = description
-        self.alert = alert
+        self.reminder = reminder
     }
     
     // copy initializer
-//    init(id: UUID, name: String, course: String, deadline: Date, description: String?, alert: HomeworkAlert?) {
+    //    init(id: UUID, name: String, course: String, deadline: Date, description: String?, reminder: EKReminder) {
 //        self.id = id
 //        self.name = name
 //        self.course = course
 //        self.deadline = deadline
 //        self.taskDescription = description
-//        self.alert = alert
+//        self.reminder = reminder
 //    }
     
-    func copyWith(name: String, course: String, deadline: Date, description: String?, alert: HomeworkAlert?) -> HomeworkTask {
-        return HomeworkTask(id: self.id, name: name, course: course, deadline: deadline, taskDescription: description, alert: alert)
+    func copyWith(name: String, course: String, deadline: Date, description: String?, reminder: EKReminder) -> HomeworkTask {
+        return HomeworkTask(id: self.id, name: name, course: course, deadline: deadline, taskDescription: description, reminder: reminder)
     }
 }

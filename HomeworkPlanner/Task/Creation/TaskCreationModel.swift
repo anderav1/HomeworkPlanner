@@ -2,6 +2,9 @@ import EventKit
 import Foundation
 
 protocol HWTaskCreationModelDelegate: class {
+    var eventStore: EKEventStore { get set }
+    var calendar: EKCalendar { get set }
+    
     func save(homeworkTask: HomeworkTask)
 }
 
@@ -38,29 +41,35 @@ final class HWTaskCreationModel {
 }
 
 extension HWTaskCreationModel {
-    func saveHomeworkTask(name: String, course: String, deadline: Date, description: String?, alert: HomeworkAlert?) {
+    func saveHomeworkTask(name: String, course: String, deadline: Date, description: String?) {
+        let reminder = createReminder(name: name, notes: description)
+        
         var homeworkTask: HomeworkTask {
             guard self.isEditing else {
                 // new homework task
-                return HomeworkTask(name: name, course: course, deadline: deadline, description: description, alert: alert)
+                return HomeworkTask(name: name, course: course, deadline: deadline, description: description, reminder: reminder)
             }
             // copy existing task
-            return self.homeworkTask.copyWith(name: name, course: course, deadline: deadline, description: description, alert: alert)
+            return self.homeworkTask.copyWith(name: name, course: course, deadline: deadline, description: description, reminder: reminder)
         }
         
         #warning("Save homeworkTask to core data")
     }
     
-    func addReminder(homeworkTask: HomeworkTask, timeUnit: TimeUnit, timeBeforeDeadline: Int, eventStore: EKEventStore) {
-        let reminder = EKReminder(eventStore: eventStore)
-        reminder.title = homeworkTask.name
-        //reminder.calendar = delegate?.calendar
-        reminder.notes = homeworkTask.taskDescription
+    private func createReminder(name: String, notes: String?) -> EKReminder {
+        let reminder = EKReminder(eventStore: delegate!.eventStore)
+        reminder.title = name
+        reminder.calendar = delegate?.calendar
+        reminder.notes = notes
         
+        return reminder
+    }
+    
+    func addHomeworkAlarm(timeUnit: TimeUnit, timeBeforeDeadline: Int) {
         let timeInterval = TimeInterval(timeUnit.secondsPerUnit * timeBeforeDeadline)
         let alarmDate = homeworkTask.deadline - timeInterval
         
         let alarm = EKAlarm(absoluteDate: alarmDate)
-        reminder.addAlarm(alarm)
+        homeworkTask.reminder?.addAlarm(alarm)
     }
 }

@@ -9,6 +9,7 @@ final class HWTaskListModel {
     //private let hwListPersistence:
     private var homeworkTasks: [HomeworkTask]
     private(set) var eventStore: EKEventStore
+    // see https://www.andrewcbancroft.com/2015/06/17/creating-calendars-with-event-kit-and-swift/
     
     let rowHeight: CGFloat = 70.0
     
@@ -19,12 +20,17 @@ final class HWTaskListModel {
     init(delegate: HWTaskListModelDelegate) {
         self.delegate = delegate
         
+        #warning("retrieve homework tasks from persistence")
     }
 }
 
 extension HWTaskListModel {
     func homeworkTask(atIndex index: Int) -> HomeworkTask? {
         return homeworkTasks[index]
+    }
+    
+    func sort() {
+        homeworkTasks.sort(by: { $0.deadline < $1.deadline })
     }
 }
 
@@ -39,6 +45,6 @@ extension HWTaskListModel: HWTaskCreationModelDelegate {
     }
     
     func save(homeworkTask: HomeworkTask) {
-        <#code#>
+        #warning("save homework task to persistence")
     }
 }

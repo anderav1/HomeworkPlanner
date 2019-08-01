@@ -19,6 +19,7 @@ struct HomeworkTask: Codable {
         case reminder = "reminder_id"
     }
     
+    // make struct decodable
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -31,6 +32,11 @@ struct HomeworkTask: Codable {
         let reminderId = try values.decode(String.self, forKey: .reminder)
         reminder = calendarItem(withIdentifier: reminderId) as EKReminder
         //reminder = calendarItem(withIdentifier: reminderId) as EKReminder
+    }
+    
+    // make struct encodable
+    func encode(to encoder: Encoder) throws {
+        <#code#>
     }
 }
 

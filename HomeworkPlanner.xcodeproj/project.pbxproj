@@ -22,10 +22,13 @@
 		362CFF8A22EFA9FC006FDFAF /* TaskCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8922EFA9FC006FDFAF /* TaskCalendarModel.swift */; };
 		362CFF8D22EFAB44006FDFAF /* HomeworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */; };
 		36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */; };
+		BCDC49EA80F171C80BFC0C94 /* Pods_HomeworkPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */; };
 		C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */; };
+		C4F21CC822F3695B009145BA /* HomeworkPlannerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F21CC722F3695B009145BA /* HomeworkPlannerCalendar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		341740DAFF6C65B41B1453C9 /* Pods-HomeworkPlanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeworkPlanner.debug.xcconfig"; path = "Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner.debug.xcconfig"; sourceTree = "<group>"; };
 		362CFF6022EFA7F3006FDFAF /* HomeworkPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeworkPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		362CFF6322EFA7F3006FDFAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		362CFF6522EFA7F3006FDFAF /* TaskCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreationViewController.swift; sourceTree = "<group>"; };
@@ -44,7 +47,10 @@
 		362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTask.swift; sourceTree = "<group>"; };
 		362CFF9022EFC59C006FDFAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWTaskListTableViewCell.swift; sourceTree = "<group>"; };
+		57E3081D8D2EDF1062BF4A34 /* Pods-HomeworkPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeworkPlanner.release.xcconfig"; path = "Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTaskPersistence.swift; sourceTree = "<group>"; };
+		C4F21CC722F3695B009145BA /* HomeworkPlannerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPlannerCalendar.swift; sourceTree = "<group>"; };
+		FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeworkPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,17 +58,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCDC49EA80F171C80BFC0C94 /* Pods_HomeworkPlanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F090355532E57588E1D84AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				341740DAFF6C65B41B1453C9 /* Pods-HomeworkPlanner.debug.xcconfig */,
+				57E3081D8D2EDF1062BF4A34 /* Pods-HomeworkPlanner.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		120DE0296C1F67A5F611C840 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		362CFF5722EFA7F3006FDFAF = {
 			isa = PBXGroup;
 			children = (
 				362CFF6222EFA7F3006FDFAF /* HomeworkPlanner */,
 				362CFF6122EFA7F3006FDFAF /* Products */,
+				0F090355532E57588E1D84AE /* Pods */,
+				120DE0296C1F67A5F611C840 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +108,7 @@
 				362CFF8B22EFAA5D006FDFAF /* Task */,
 				362CFF7922EFA8BD006FDFAF /* Supporting Files */,
 				362CFF9022EFC59C006FDFAF /* README.md */,
+				C4F21CC722F3695B009145BA /* HomeworkPlannerCalendar.swift */,
 			);
 			path = HomeworkPlanner;
 			sourceTree = "<group>";
@@ -154,9 +182,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 362CFF7522EFA7F5006FDFAF /* Build configuration list for PBXNativeTarget "HomeworkPlanner" */;
 			buildPhases = (
+				DB6EED3043E548797ADACCA0 /* [CP] Check Pods Manifest.lock */,
 				362CFF5C22EFA7F3006FDFAF /* Sources */,
 				362CFF5D22EFA7F3006FDFAF /* Frameworks */,
 				362CFF5E22EFA7F3006FDFAF /* Resources */,
+				CB1580AF0C3A0C87C814F46B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,6 +245,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CB1580AF0C3A0C87C814F46B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB6EED3043E548797ADACCA0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HomeworkPlanner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		362CFF5C22EFA7F3006FDFAF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -230,6 +302,7 @@
 				362CFF6C22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld in Sources */,
 				362CFF8822EFA9E9006FDFAF /* TaskCalendarViewController.swift in Sources */,
 				362CFF7C22EFA96E006FDFAF /* TaskCreationModel.swift in Sources */,
+				C4F21CC822F3695B009145BA /* HomeworkPlannerCalendar.swift in Sources */,
 				36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +447,7 @@
 		};
 		362CFF7622EFA7F5006FDFAF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 341740DAFF6C65B41B1453C9 /* Pods-HomeworkPlanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -392,6 +466,7 @@
 		};
 		362CFF7722EFA7F5006FDFAF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57E3081D8D2EDF1062BF4A34 /* Pods-HomeworkPlanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

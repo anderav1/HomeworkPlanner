@@ -1,4 +1,5 @@
 import UIKit
+import EventKit
 
 class HWTaskCreationViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
@@ -15,10 +16,9 @@ class HWTaskCreationViewController: UIViewController {
     private var datePicker: UIDatePicker!
     private var timeUnitPicker: UIPickerView!
     
+    var eventStore: EKEventStore!
+    
     var timeUnits: [TimeUnit] = []
-    for unit in TimeUnit.allCases {
-        timeUnits.append(unit)
-    }
     
     private var model: HWTaskCreationModel!
     
@@ -44,6 +44,8 @@ class HWTaskCreationViewController: UIViewController {
         
         addButton.setTitle(model.buttonText, for: .normal)
         navigationItem.title = model.titleText
+        
+        for unit in TimeUnit.allCases { timeUnits.append(unit) }
     }
 
 

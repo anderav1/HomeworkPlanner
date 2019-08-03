@@ -4,9 +4,7 @@ import EventKit
 final class HWTaskListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
-    #warning("Should these variables be private?")
-    var eventStore: EKEventStore!
-    var homeworkReminders: [EKReminder]!
+    private var eventStore: EKEventStore!
     
     private var model: HWTaskListModel!
 }
@@ -15,26 +13,17 @@ extension HWTaskListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model = HWTaskListModel(delegate: self)
+        model = HWTaskListModel(delegate: self, persistence: HomeworkTaskPersistence())
         navigationItem.title = "Assignment List"
     }
     
-    // app must request permissions & fetch data before view loads
+    // the event store must request permission to access the device's reminders
     override func viewWillAppear(_ animated: Bool) {
         eventStore = EKEventStore()
-        homeworkReminders = [EKReminder]()
-        
-        // the event store must request permission to access the device's reminders
+
         eventStore.requestAccess(to: .reminder) { (granted: Bool, error: Error?) -> Void in
             if granted {
-                // fetch reminders
-                let predicate = self.eventStore.predicateForReminders(in: nil)
-                self.eventStore.fetchReminders(matching: predicate, completion: { (reminders: [EKReminder]?) -> Void in
-                    self.homeworkReminders = reminders
-                    DispatchQueue.main.async {
-                        self.dataRefreshed()
-                    }
-                })
+                print("Access to reminders successfully granted.")
             } else {
                 print("Homework Planner does not have permission to access reminders.")
             }

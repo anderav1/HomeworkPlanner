@@ -60,10 +60,10 @@ extension HWTaskCreationModel {
             return self.homeworkTask.copyWith(name: name, course: course, deadline: deadline, taskDescription: taskDescription, reminderId: reminderId)
         }
         
-        #warning("Save homeworkTask to core data")
+        delegate?.save(homeworkTask: homeworkTask)
     }
     
-    // Fetch the corresponding reminder for the homework task
+    // Fetch the corresponding reminder for an existing homework task
     func fetchReminder() -> EKReminder {
         return delegate?.eventStore.calendarItem(withIdentifier: homeworkTask.reminderId!) as! EKReminder
     }
@@ -74,6 +74,14 @@ extension HWTaskCreationModel {
         reminder.title = name
         reminder.calendar = delegate?.eventStore.defaultCalendarForNewReminders()
         reminder.notes = notes
+        
+        do {
+            try delegate?.eventStore.save(reminder, commit: true)
+            
+            print("Successfully saved reminder for \(homeworkTask.name)")
+        } catch {
+            print("Error: could not save reminder for \(homeworkTask.name)")
+        }
         
         return reminder
     }
@@ -97,5 +105,11 @@ extension HWTaskCreationModel {
         let alarm = EKAlarm(absoluteDate: alarmDate)
         
         reminder.addAlarm(alarm)
+        
+        do {
+            try delegate?.eventStore.commit()
+        } catch {
+            print("Error: Could not save reminder alarm to event store.")
+        }
     }
 }

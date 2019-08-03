@@ -20,7 +20,7 @@ extension HomeworkTask {
         self.reminderId = reminderId
     }
     
-    // copy initializer
+    // Copy initializer
 //        init(id: UUID, name: String, course: String, deadline: Date, taskDescription: String?, reminderId: String?) {
 //        self.id = id
 //        self.name = name
@@ -38,5 +38,18 @@ extension HomeworkTask {
 extension HomeworkTask {
     static var defaultHomeworkTask: HomeworkTask {
         return HomeworkTask(id: UUID(), name: "", course: "", deadline: Date(), taskDescription: nil, reminderId: nil)
+    }
+}
+
+// Persistance functionality derived from the in-class persistence lectures
+extension HomeworkTask {
+    static func from(_ homeworkTaskEntities: [HomeworkTaskEntity]) -> [HomeworkTask] {
+        return homeworkTaskEntities.compactMap { HomeworkTask.from($0) }
+    }
+    
+    static func from(_ homeworkTaskEntity: HomeworkTaskEntity) -> HomeworkTask? {
+        guard let id = homeworkTaskEntity.id, let name = homeworkTaskEntity.name, let course = homeworkTaskEntity.course, let deadline = homeworkTaskEntity.deadline, let taskDescription = homeworkTaskEntity.taskDescription, let reminderId = homeworkTaskEntity.reminderId else { return nil }
+        
+        return HomeworkTask(id: id, name: name, course: course, deadline: deadline, taskDescription: taskDescription, reminderId: reminderId)
     }
 }

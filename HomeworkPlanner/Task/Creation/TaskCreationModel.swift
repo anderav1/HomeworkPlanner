@@ -87,7 +87,7 @@ extension HWTaskCreationModel {
     }
     
     // Add an alarm to the corresponding calendar reminder
-    func addHomeworkAlarm(timeUnit: TimeUnit, timeBeforeDeadline: Int) {
+    private func addHomeworkAlarm(timeUnit: TimeUnit, timeBeforeDeadline: Int) {
         let reminder = fetchReminder()
         
         // if the homework task is being edited, make sure it will only have the most recently set alarm
@@ -111,5 +111,9 @@ extension HWTaskCreationModel {
         } catch {
             print("Error: Could not save reminder alarm to event store.")
         }
+    }
+    
+    func getAlarmValues() -> (stepperValue: Double, unit: TimeUnit) {
+        #warning("write this function")
     }
 }

@@ -7,13 +7,14 @@ class HWTaskCreationViewController: UIViewController {
     @IBOutlet weak var deadlineField: UITextField!
     @IBOutlet weak var descriptionField: UITextField!
     
-    @IBOutlet weak var reminderStepper: UIStepper!
+    @IBOutlet weak var alarmStepper: UIStepper!
     @IBOutlet weak var reminderTimeAmountLabel: UILabel!
     @IBOutlet weak var reminderTimeUnitsLabel: UITextField!
     
     @IBOutlet weak var addButton: UIButton!
     
     private var datePicker: UIDatePicker!
+    
     private var timeUnitPicker: UIPickerView!
     
     var eventStore: EKEventStore!
@@ -39,13 +40,20 @@ class HWTaskCreationViewController: UIViewController {
         timeUnitPicker.dataSource = self
         
         // configure reminder stepper and labels
-        reminderStepper.minimumValue = model.minReminderValue
-        reminderStepper.maximumValue = model.maxReminderValue
+        alarmStepper.minimumValue = model.minReminderValue
+        alarmStepper.maximumValue = model.maxReminderValue
+        alarmStepper.value = 0.0
         
         addButton.setTitle(model.buttonText, for: .normal)
         navigationItem.title = model.titleText
         
         for unit in TimeUnit.allCases { timeUnits.append(unit) }
+        
+        nameField.text = model.homeworkTask.name
+        courseField.text = model.homeworkTask.course
+        descriptionField.text = model.homeworkTask.taskDescription ?? ""
+        
+        #warning("Configure correct alarm fields for the homework task")
     }
 
 
@@ -63,6 +71,15 @@ extension HWTaskCreationViewController {
         dateFormatter.dateFormat = "MMM d, h:mm a"
         
         deadlineField.text = dateFormatter.string(from: datePicker.date)
+    }
+    
+    @IBAction private func addButtonTapped(_ sender: UIButton) {
+        var alarmShouldBeAdded: Bool {
+            return alarmStepper.value != 0.0
+        }
+        model.saveHomeworkTask(name: nameField.text, course: courseField.text, deadline: datePicker.date, taskDescription: descriptionField.text, withAlarm: alarmShouldBeAdded)
+        
+        navigationController?.popViewController(animated: true)
     }
 }
 

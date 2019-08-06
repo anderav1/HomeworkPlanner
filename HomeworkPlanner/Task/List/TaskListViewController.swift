@@ -2,11 +2,24 @@ import UIKit
 import EventKit
 
 final class HWTaskListViewController: UIViewController {
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var menuStackView: UIStackView!
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
+    // menu buttons
+    @IBOutlet weak var courseListButton: UIButton!
+    @IBOutlet weak var newAssignmentButton: UIButton!
+    @IBOutlet weak var sortListButton: UIButton!
+    @IBOutlet weak var viewCalendarButton: UIButton!
     
     private var eventStore: EKEventStore!
     
     private var model: HWTaskListModel!
+    
+    private var menuIsVisible = false
+    
+    #warning("Other features to add: sort list, filter list, delete items, add task priority")
 }
 
 extension HWTaskListViewController {
@@ -15,6 +28,10 @@ extension HWTaskListViewController {
         
         model = HWTaskListModel(delegate: self, persistence: HomeworkTaskPersistence())
         navigationItem.title = "Assignment List"
+        
+        // configure menu
+        #warning("configure menu")
+        menuStackView.isHidden = true
     }
     
     // the event store must request permission to access the device's reminders
@@ -75,5 +92,37 @@ extension HWTaskListViewController: UITableViewDelegate {
 extension HWTaskListViewController: HWTaskListModelDelegate {
     func dataRefreshed() {
         tableView.reloadData()
+    }
+}
+
+extension HWTaskListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        model.searchList(searchText: searchText)
+    }
+}
+
+extension HWTaskListViewController {
+    // Clicking the menu button will toggle the menu
+    @IBAction private func menuButtonClicked(_ sender: UIBarButtonItem) {
+        menuStackView.isHidden = !menuIsVisible
+        
+        // update the menuIsVisible bool
+        menuIsVisible = !menuIsVisible
+    }
+    
+    @IBAction private func viewCourseList(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction private func newAssignment(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction private func sortList(_ sender: UIButton) {
+        // trigger an alert to choose sort mode
+    }
+    
+    @IBAction private func viewCalendar(_ sender: UIButton) {
+        
     }
 }

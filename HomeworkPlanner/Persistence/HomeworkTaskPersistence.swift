@@ -60,6 +60,9 @@ extension HomeworkTaskPersistence {
         homeworkTaskObject.setValue(homeworkTask.reminderId, forKey: "reminderId")
         
         do {
+            let alarmSettingsData = try JSONEncoder().encode(homeworkTask.alarmSettings)
+            homeworkTaskObject.setValue(alarmSettingsData, forKey: "alarmSettings")
+            
             try managedContext.save()
             
             print("Successfully saved \(homeworkTask.name)")

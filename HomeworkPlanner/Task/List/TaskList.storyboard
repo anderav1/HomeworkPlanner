@@ -42,9 +42,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jjm-JY-XKw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2hT-5v-ixw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jjm-JY-XKw">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="5" textLabel="uyR-Mf-6sL" detailTextLabel="HDe-pa-Xxb" style="IBUITableViewCellStyleValue1" id="VJ3-2o-yc3" customClass="HWTaskListTableViewCell" customModule="HomeworkPlanner" customModuleProvider="target">
@@ -78,13 +81,105 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8kG-wp-Ikm" userLabel="Menu Stack">
+                                <rect key="frame" x="0.0" y="64" width="250" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hob-eN-9dz">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="zAI-SH-nhG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="My Course List">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewCourseList:" destination="haO-4j-Ga5" eventType="touchUpInside" id="Ccs-2k-bJG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0A-TU-Ysi">
+                                        <rect key="frame" x="0.0" y="50" width="250" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="I9G-94-mIN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Add a New Assignment">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="newAssignment:" destination="haO-4j-Ga5" eventType="touchUpInside" id="u81-BH-hw0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szS-gN-kqj">
+                                        <rect key="frame" x="0.0" y="100" width="250" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="2VS-3q-QTd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Sort Assignments...">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sortList:" destination="haO-4j-Ga5" eventType="touchUpInside" id="7uU-2i-Cxu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bna-dr-vuf">
+                                        <rect key="frame" x="0.0" y="150" width="250" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="igi-69-Kdm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="View Calendar">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="viewCalendar:" destination="haO-4j-Ga5" eventType="touchUpInside" id="KPX-5b-l1q"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="jya-wh-rqE"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2hT-5v-ixw" firstAttribute="bottom" secondItem="Jjm-JY-XKw" secondAttribute="top" id="8TD-b4-QW5"/>
+                            <constraint firstItem="2hT-5v-ixw" firstAttribute="leading" secondItem="5Ct-hJ-WHa" secondAttribute="leading" id="B7v-22-Y2s"/>
+                            <constraint firstItem="8kG-wp-Ikm" firstAttribute="leading" secondItem="5Ct-hJ-WHa" secondAttribute="leading" id="TJ4-8A-vOs"/>
+                            <constraint firstItem="2hT-5v-ixw" firstAttribute="top" secondItem="5Ct-hJ-WHa" secondAttribute="top" id="Tt8-W4-cWs"/>
+                            <constraint firstItem="Jjm-JY-XKw" firstAttribute="top" secondItem="2hT-5v-ixw" secondAttribute="bottom" id="WF3-tM-Bwb"/>
+                            <constraint firstItem="Jjm-JY-XKw" firstAttribute="trailing" secondItem="5Ct-hJ-WHa" secondAttribute="trailing" id="bLW-yo-Eut"/>
+                            <constraint firstItem="2hT-5v-ixw" firstAttribute="trailing" secondItem="5Ct-hJ-WHa" secondAttribute="trailing" id="dp0-Pm-dyi"/>
+                            <constraint firstItem="Jjm-JY-XKw" firstAttribute="leading" secondItem="5Ct-hJ-WHa" secondAttribute="leading" id="ke3-hy-TUA"/>
+                            <constraint firstItem="8kG-wp-Ikm" firstAttribute="top" secondItem="5Ct-hJ-WHa" secondAttribute="top" id="nDM-8d-8fp"/>
+                            <constraint firstItem="Jjm-JY-XKw" firstAttribute="bottom" secondItem="5Ct-hJ-WHa" secondAttribute="bottom" id="nEH-4A-gyl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5Ct-hJ-WHa"/>
                     </view>
-                    <navigationItem key="navigationItem" id="gO5-hF-fBX"/>
+                    <navigationItem key="navigationItem" id="iHC-4y-0pi">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger-menu-icon" id="V6q-3d-v7x" userLabel="Menu Icon">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="courseListButton" destination="hob-eN-9dz" id="EnH-ws-ZJ9"/>
+                        <outlet property="menuButton" destination="V6q-3d-v7x" id="0OW-dO-HlU"/>
+                        <outlet property="menuStackView" destination="8kG-wp-Ikm" id="OYJ-r3-EXr"/>
+                        <outlet property="newAssignmentButton" destination="n0A-TU-Ysi" id="Nne-xl-F7s"/>
+                        <outlet property="searchBar" destination="2hT-5v-ixw" id="Mwp-7b-NZI"/>
+                        <outlet property="sortListButton" destination="szS-gN-kqj" id="lHb-Gl-Bik"/>
                         <outlet property="tableView" destination="Jjm-JY-XKw" id="f7g-Tx-CgD"/>
+                        <outlet property="viewCalendarButton" destination="bna-dr-vuf" id="rj9-rU-Wvn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XIU-qr-pLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -92,4 +187,7 @@
             <point key="canvasLocation" x="1478" y="-94"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hamburger-menu-icon" width="30" height="30"/>
+    </resources>
 </document>

@@ -41,26 +41,46 @@ final class HWTaskCreationModel {
 
 extension HWTaskCreationModel {
     // Save the homework task object to core data
-    func saveHomeworkTask(name: String, course: String, deadline: Date, taskDescription: String?, withAlarm: Bool) {
+    func saveHomeworkTask(name: String, course: String, deadline: Date, taskDescription: String?, alarmUnit: TimeUnit?, alarmAmount: Int?) {
         // get or create the corresponding reminder for homeworkTask
         let reminder: EKReminder
-        if isEditing { // a reminder already exists for the homework task
+        if isEditing { // reminder already exists
             reminder = fetchReminder()
         } else { // create a new reminder
             reminder = createReminder(name: name, notes: taskDescription)
         }
         let reminderId = reminder.calendarItemIdentifier
         
+        // configure alarm settings
+        var alarmSettings: AlarmSettings? {
+            if alarmUnit != nil && alarmAmount != nil {
+                return AlarmSettings(timeUnit: alarmUnit!.rawValue, timeAmount: alarmAmount!)
+            }
+            return nil
+        }
+        
+        // call addHomeworkAlarm if necessary
+        if alarmSettings != nil {
+            addHomeworkAlarm(to: reminder, timeUnit: alarmUnit!, timeBeforeDeadline: alarmAmount!)
+        }
+        
         var homeworkTask: HomeworkTask {
             guard self.isEditing else {
                 // new homework task
-                return HomeworkTask(name: name, course: course, deadline: deadline, taskDescription: taskDescription, reminderId: reminderId)
+                return HomeworkTask(name: name, course: course, deadline: deadline, taskDescription: taskDescription, reminderId: reminderId, alarmSettings: alarmSettings)
             }
             // copy existing task
-            return self.homeworkTask.copyWith(name: name, course: course, deadline: deadline, taskDescription: taskDescription, reminderId: reminderId)
+            return self.homeworkTask.copyWith(name: name, course: course, deadline: deadline, taskDescription: taskDescription, reminderId: reminderId, alarmSettings: alarmSettings)
         }
         
-        delegate?.save(homeworkTask: homeworkTask)
+        delegate?.save(homeworkTask: HomeworkTask(
+            id: homeworkTask.id,
+            name: homeworkTask.name,
+            course: homeworkTask.course,
+            deadline: homeworkTask.deadline,
+            taskDescription: homeworkTask.taskDescription,
+            reminderId: homeworkTask.reminderId,
+            alarmSettings: homeworkTask.alarmSettings))
     }
     
     // Fetch the corresponding reminder for an existing homework task
@@ -87,9 +107,7 @@ extension HWTaskCreationModel {
     }
     
     // Add an alarm to the corresponding calendar reminder
-    private func addHomeworkAlarm(timeUnit: TimeUnit, timeBeforeDeadline: Int) {
-        let reminder = fetchReminder()
-        
+    private func addHomeworkAlarm(to reminder: EKReminder, timeUnit: TimeUnit, timeBeforeDeadline: Int) {
         // if the homework task is being edited, make sure it will only have the most recently set alarm
         if isEditing && reminder.hasAlarms {
             // delete any previously set alarm
@@ -108,12 +126,9 @@ extension HWTaskCreationModel {
         
         do {
             try delegate?.eventStore.commit()
+            print("Alarm successfully added to reminder")
         } catch {
             print("Error: Could not save reminder alarm to event store.")
         }
-    }
-    
-    func getAlarmValues() -> (stepperValue: Double, unit: TimeUnit) {
-        #warning("write this function")
     }
 }

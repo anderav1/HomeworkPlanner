@@ -8,18 +8,14 @@ class HWTaskCreationViewController: UIViewController {
     @IBOutlet weak var descriptionField: UITextField!
     
     @IBOutlet weak var alarmStepper: UIStepper!
-    @IBOutlet weak var reminderTimeAmountLabel: UILabel!
-    @IBOutlet weak var reminderTimeUnitsLabel: UITextField!
+    @IBOutlet weak var alarmTimeAmountLabel: UILabel!
+    @IBOutlet weak var alarmTimeUnitsField: UITextField!
     
     @IBOutlet weak var addButton: UIButton!
     
     private var datePicker: UIDatePicker!
     
-    private var timeUnitPicker: UIPickerView!
-    
     var eventStore: EKEventStore!
-    
-    var timeUnits: [TimeUnit] = []
     
     private var model: HWTaskCreationModel!
     
@@ -35,25 +31,29 @@ class HWTaskCreationViewController: UIViewController {
         
         deadlineField.inputView = datePicker
         
-        // configure time unit picker
-        timeUnitPicker.delegate = self
-        timeUnitPicker.dataSource = self
+        alarmTimeUnitsField.addTarget(self, action: #selector(timeUnitsAlert), for: .touchUpInside)
         
-        // configure reminder stepper and labels
+        // configure alarm elements
         alarmStepper.minimumValue = model.minReminderValue
         alarmStepper.maximumValue = model.maxReminderValue
-        alarmStepper.value = 0.0
+        alarmStepper.stepValue = 1.0
+        alarmStepper.value = Double(model.homeworkTask.alarmSettings?.timeAmount ?? 0)
+       
+        let timeAmount = model.homeworkTask.alarmSettings?.timeAmount ?? 0
+        alarmTimeAmountLabel.text = "\(timeAmount)"
+        
+        if let timeUnit = model.homeworkTask.alarmSettings?.timeUnit {
+            alarmTimeUnitsField.text = "\(timeUnit)"
+        } else {
+            alarmTimeUnitsField.text = nil
+        }
         
         addButton.setTitle(model.buttonText, for: .normal)
         navigationItem.title = model.titleText
         
-        for unit in TimeUnit.allCases { timeUnits.append(unit) }
-        
         nameField.text = model.homeworkTask.name
         courseField.text = model.homeworkTask.course
         descriptionField.text = model.homeworkTask.taskDescription ?? ""
-        
-        #warning("Configure correct alarm fields for the homework task")
     }
 
 
@@ -73,27 +73,33 @@ extension HWTaskCreationViewController {
         deadlineField.text = dateFormatter.string(from: datePicker.date)
     }
     
-    @IBAction private func addButtonTapped(_ sender: UIButton) {
-        var alarmShouldBeAdded: Bool {
-            return alarmStepper.value != 0.0
+    // Configure time units alert
+    @objc private func timeUnitsAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        
+        // add time unit options
+        TimeUnit.allCases.forEach { unit in
+            let timeUnitOption = UIAlertAction(title: unit.rawValue, style: .default) { (action) -> Void in
+                self.alarmTimeUnitsField.text = unit.rawValue
+            }
+            alert.addAction(timeUnitOption)
         }
-        model.saveHomeworkTask(name: nameField.text, course: courseField.text, deadline: datePicker.date, taskDescription: descriptionField.text, withAlarm: alarmShouldBeAdded)
+        
+        // display the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction private func addButtonTapped(_ sender: UIButton) {
+        var alarmUnit: TimeUnit? = nil
+        var alarmAmount: Int? = nil
+        
+        if alarmStepper.value != 0.0 && alarmTimeUnitsField.text != nil {
+            alarmUnit = TimeUnit(rawValue: alarmTimeUnitsField.text!)
+            alarmAmount = Int(alarmStepper.value)
+        }
+        
+        model.saveHomeworkTask(name: nameField.text!, course: courseField.text!, deadline: datePicker.date, taskDescription: descriptionField.text, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
         
         navigationController?.popViewController(animated: true)
-    }
-}
-
-// picker view functions
-extension HWTaskCreationViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return timeUnits.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return timeUnits[row].rawValue
     }
 }

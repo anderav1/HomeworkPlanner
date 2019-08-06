@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="HomeworkTaskEntity" representedClassName="HomeworkTaskEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="alarmSettings" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="course" attributeType="String" syncable="YES"/>
         <attribute name="deadline" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
@@ -12,7 +13,7 @@
         <attribute name="courseSchedule" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HomeworkTaskEntity" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="HomeworkTaskEntity" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="UserEntity" positionX="-54" positionY="36" width="128" height="60"/>
     </elements>
 </model>

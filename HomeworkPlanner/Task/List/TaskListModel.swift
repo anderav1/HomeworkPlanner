@@ -46,6 +46,18 @@ extension HWTaskListModel {
 //        // sort homework tasks by deadline
 //        displayedHomeworkTasks.sort(by: { $0.deadline < $1.deadline })
 //    }
+    
+    func searchList(searchText: String) {
+        guard !searchText.isEmpty else {
+            displayedHomeworkTasks = allHomeworkTasks
+            delegate?.dataRefreshed()
+            return
+        }
+        
+        displayedHomeworkTasks = allHomeworkTasks.filter { task in
+            task.name.lowercased().contains(searchText.lowercased()) || task.course.lowercased().contains(searchText.lowercased()) || task.taskDescription?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+    }
 }
 
 extension HWTaskListModel: HWTaskCreationModelDelegate {

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Course List View Controller-->
+        <scene sceneID="VFi-U6-GeT">
+            <objects>
+                <viewController id="Lj3-AR-XR9" customClass="CourseListViewController" customModule="HomeworkPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bA0-Uf-nsd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PSi-WD-QDb" userLabel="Add Course Stack">
+                                <rect key="frame" x="10" y="40" width="355" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5VM-EC-XeX" userLabel="Add Course Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="teK-PA-UoD" userLabel="Add Course Field">
+                                        <rect key="frame" x="100" y="0.0" width="255" height="40"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="addCourse:" destination="Lj3-AR-XR9" eventType="editingDidEnd" id="7Ao-qe-rZp"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2s7-Gi-Scj"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PST-2y-khK">
+                                <rect key="frame" x="0.0" y="90" width="375" height="577"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" textLabel="UpN-5i-T8m" style="IBUITableViewCellStyleDefault" id="Aa0-6L-B6Y">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Aa0-6L-B6Y" id="1e5-JE-gmP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UpN-5i-T8m">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PST-2y-khK" firstAttribute="leading" secondItem="UOX-iZ-x69" secondAttribute="leading" id="0Cd-ax-OJY"/>
+                            <constraint firstItem="UOX-iZ-x69" firstAttribute="bottom" secondItem="PST-2y-khK" secondAttribute="bottom" id="Lds-iW-zet"/>
+                            <constraint firstItem="UOX-iZ-x69" firstAttribute="trailing" secondItem="PSi-WD-QDb" secondAttribute="trailing" constant="10" id="Nzs-CL-hv0"/>
+                            <constraint firstItem="PSi-WD-QDb" firstAttribute="top" secondItem="UOX-iZ-x69" secondAttribute="top" constant="20" id="Sie-Nn-1Fa"/>
+                            <constraint firstItem="PST-2y-khK" firstAttribute="top" secondItem="PSi-WD-QDb" secondAttribute="bottom" constant="10" id="Tz2-0f-65U"/>
+                            <constraint firstItem="PSi-WD-QDb" firstAttribute="leading" secondItem="UOX-iZ-x69" secondAttribute="leading" constant="10" id="q1b-TK-94a"/>
+                            <constraint firstItem="UOX-iZ-x69" firstAttribute="trailing" secondItem="PST-2y-khK" secondAttribute="trailing" id="szz-2Z-Eje"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UOX-iZ-x69"/>
+                    </view>
+                    <connections>
+                        <outlet property="addCourseTextField" destination="teK-PA-UoD" id="QcW-JQ-tM9"/>
+                        <outlet property="tableView" destination="PST-2y-khK" id="ff3-vk-cIW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bu1-xK-KbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="14" y="169"/>
+        </scene>
+    </scenes>
+</document>

@@ -23,6 +23,8 @@
 		362CFF8D22EFAB44006FDFAF /* HomeworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFF8C22EFAB44006FDFAF /* HomeworkTask.swift */; };
 		36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */; };
 		BCDC49EA80F171C80BFC0C94 /* Pods_HomeworkPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */; };
+		C489B08A22FA1728008D5CC7 /* CourseListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C489B08922FA1728008D5CC7 /* CourseListModel.swift */; };
+		C489B08C22FA195A008D5CC7 /* CourseList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C489B08B22FA195A008D5CC7 /* CourseList.storyboard */; };
 		C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */; };
 		C4F0ED2D22F9F38000F8984E /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F0ED2C22F9F38000F8984E /* CourseListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,8 @@
 		362CFF9022EFC59C006FDFAF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		57E3081D8D2EDF1062BF4A34 /* Pods-HomeworkPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeworkPlanner.release.xcconfig"; path = "Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner.release.xcconfig"; sourceTree = "<group>"; };
+		C489B08922FA1728008D5CC7 /* CourseListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListModel.swift; sourceTree = "<group>"; };
+		C489B08B22FA195A008D5CC7 /* CourseList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CourseList.storyboard; sourceTree = "<group>"; };
 		C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTaskPersistence.swift; sourceTree = "<group>"; };
 		C4F0ED2C22F9F38000F8984E /* CourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeworkPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				C4F0ED2C22F9F38000F8984E /* CourseListViewController.swift */,
+				C489B08922FA1728008D5CC7 /* CourseListModel.swift */,
+				C489B08B22FA195A008D5CC7 /* CourseList.storyboard */,
 			);
 			path = "Course List";
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				362CFF8322EFA9B1006FDFAF /* TaskList.storyboard in Resources */,
 				362CFF6E22EFA7F5006FDFAF /* Assets.xcassets in Resources */,
 				362CFF6922EFA7F3006FDFAF /* TaskCreation.storyboard in Resources */,
+				C489B08C22FA195A008D5CC7 /* CourseList.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +308,7 @@
 			files = (
 				C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */,
 				362CFF8122EFA99D006FDFAF /* TaskListModel.swift in Sources */,
+				C489B08A22FA1728008D5CC7 /* CourseListModel.swift in Sources */,
 				362CFF6622EFA7F3006FDFAF /* TaskCreationViewController.swift in Sources */,
 				362CFF7F22EFA990006FDFAF /* TaskListViewController.swift in Sources */,
 				362CFF6422EFA7F3006FDFAF /* AppDelegate.swift in Sources */,

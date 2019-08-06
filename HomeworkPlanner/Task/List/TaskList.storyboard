@@ -76,7 +76,7 @@
                                         <connections>
                                             <outlet property="detailLabel" destination="HDe-pa-Xxb" id="NF1-HU-oXY"/>
                                             <outlet property="nameLabel" destination="uyR-Mf-6sL" id="4Gc-IK-RIg"/>
-                                            <segue destination="Mds-wx-tYg" kind="show" id="Q5j-QX-D88"/>
+                                            <segue destination="Mds-wx-tYg" kind="show" identifier="editTaskCreation" id="Q5j-QX-D88"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -111,7 +111,7 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="newAssignment:" destination="haO-4j-Ga5" eventType="touchUpInside" id="u81-BH-hw0"/>
+                                            <segue destination="Mds-wx-tYg" kind="show" identifier="newTaskCreation" id="nPK-pr-g6B"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szS-gN-kqj">
@@ -169,13 +169,15 @@
                     <navigationItem key="navigationItem" id="iHC-4y-0pi">
                         <barButtonItem key="leftBarButtonItem" image="hamburger-menu-icon" id="V6q-3d-v7x" userLabel="Menu Icon">
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="haO-4j-Ga5" id="ggf-3O-veL"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="courseListButton" destination="hob-eN-9dz" id="EnH-ws-ZJ9"/>
                         <outlet property="menuButton" destination="V6q-3d-v7x" id="0OW-dO-HlU"/>
                         <outlet property="menuStackView" destination="8kG-wp-Ikm" id="OYJ-r3-EXr"/>
-                        <outlet property="newAssignmentButton" destination="n0A-TU-Ysi" id="Nne-xl-F7s"/>
                         <outlet property="searchBar" destination="2hT-5v-ixw" id="Mwp-7b-NZI"/>
                         <outlet property="sortListButton" destination="szS-gN-kqj" id="lHb-Gl-Bik"/>
                         <outlet property="tableView" destination="Jjm-JY-XKw" id="f7g-Tx-CgD"/>
@@ -190,4 +192,7 @@
     <resources>
         <image name="hamburger-menu-icon" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Q5j-QX-D88"/>
+    </inferredMetricsTieBreakers>
 </document>

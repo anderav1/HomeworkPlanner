@@ -14,12 +14,11 @@ final class HWTaskListViewController: UIViewController {
     @IBOutlet weak var viewCalendarButton: UIButton!
     
     private var eventStore: EKEventStore!
-    
     private var model: HWTaskListModel!
     
     private var menuIsVisible = false
     
-    #warning("Other features to add: sort list, filter list, delete items, add task priority")
+    #warning("Other features to add: filter list, delete items, add task priority")
 }
 
 extension HWTaskListViewController {
@@ -60,7 +59,7 @@ extension HWTaskListViewController {
             
             let hwTaskCreationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, isEditing: taskExists)
             creationViewController.setup(model: hwTaskCreationModel)
-        }
+        } else if let courseListViewController = segue.destination as? 
     }
 }
 
@@ -101,8 +100,9 @@ extension HWTaskListViewController: UISearchBarDelegate {
     }
 }
 
+// menu functions
 extension HWTaskListViewController {
-    // Clicking the menu button will toggle the menu
+    // Clicking the menu button toggles the menu
     @IBAction private func menuButtonClicked(_ sender: UIBarButtonItem) {
         menuStackView.isHidden = !menuIsVisible
         
@@ -111,18 +111,25 @@ extension HWTaskListViewController {
     }
     
     @IBAction private func viewCourseList(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction private func newAssignment(_ sender: UIButton) {
-        
+        // segue to course list view
     }
     
     @IBAction private func sortList(_ sender: UIButton) {
         // trigger an alert to choose sort mode
+        let alert = UIAlertController(title: "Sort list by...", message: nil, preferredStyle: .alert)
+        
+        // add an action for each sort mode
+        SortMode.allCases.forEach { sortMode in
+            let sortAction = UIAlertAction(title: sortMode.title, style: .default) { (action) -> Void in
+                self.model.sortList(by: sortMode)
+            }
+            alert.addAction(sortAction)
+        }
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction private func viewCalendar(_ sender: UIButton) {
-        
+        // segue to calendar view
     }
 }

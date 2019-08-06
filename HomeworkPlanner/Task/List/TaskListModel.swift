@@ -1,17 +1,30 @@
 import EventKit
 import struct UIKit.CGFloat
 
+enum SortMode: CaseIterable {
+    case deadline
+    case course
+    case name
+    
+    var title: String {
+        switch self {
+        case .deadline: return "Deadline"
+        case .course: return "Course"
+        case .name: return "Name"
+        }
+    }
+}
+
 protocol HWTaskListModelDelegate: class {
     func dataRefreshed()
 }
 
 final class HWTaskListModel {
     private let homeworkPersistence: HomeworkTaskPersistence
-    private(set) var eventStore: EKEventStore
     
     private(set) var displayedHomeworkTasks: [HomeworkTask] = [] // tasks currently being displayed
-    private var storedHomeworkTasks: [HomeworkTask] = [] // tasks saved in persistence
-    private var allHomeworkTasks: [HomeworkTask] = [] // all tasks
+    private var storedHomeworkTasks: [HomeworkTask] = [] // tasks saved in persistence, unsorted
+    private var allHomeworkTasks: [HomeworkTask] = [] // master list, sorted by deadline
     
     var reminderList: [EKReminder] = []
     
@@ -29,11 +42,7 @@ final class HWTaskListModel {
         storedHomeworkTasks = persistence.homeworkTasks
         
         allHomeworkTasks = storedHomeworkTasks.sorted(by: { $0.deadline < $1.deadline })
-        displayedHomeworkTasks = allHomeworkTasks // all tasks are displayed by default
-        
-        for task in storedHomeworkTasks {
-            
-        }
+        displayedHomeworkTasks = allHomeworkTasks // all tasks display by default
     }
 }
 
@@ -42,10 +51,13 @@ extension HWTaskListModel {
         return displayedHomeworkTasks[index]
     }
     
-//    func sortList() {
-//        // sort homework tasks by deadline
-//        displayedHomeworkTasks.sort(by: { $0.deadline < $1.deadline })
-//    }
+    func sortList(by sortMode: SortMode) {
+        switch sortMode {
+        case .deadline: displayedHomeworkTasks.sort(by: { $0.deadline < $1.deadline })
+        case .course: displayedHomeworkTasks.sort(by: { $0.course < $1.course && $0.deadline < $1.deadline })
+        case .name: displayedHomeworkTasks.sort(by: { $0.name < $1.name })
+        }
+    }
     
     func searchList(searchText: String) {
         guard !searchText.isEmpty else {
@@ -62,7 +74,6 @@ extension HWTaskListModel {
 
 extension HWTaskListModel: HWTaskCreationModelDelegate {
     func save(homeworkTask: HomeworkTask) {
-        // save homework task to persistence
         homeworkPersistence.save(homeworkTask: homeworkTask)
         
         // update the master list

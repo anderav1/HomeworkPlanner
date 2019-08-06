@@ -14,9 +14,33 @@ final class HomeworkTaskPersistence {
         managedContext.performAndWait {
             do {
                 let homeworkTaskEntities = try managedContext.fetch(hwTaskFetchRequest)
-                result = HomeworkTask.from(homeworkTaskEntities)
+                result = HomeworkTask.from(homeworkTaskEntities).filter { $0.deadline >= Date() }
                 
                 print("Successfully retrieved \(result.count) tasks")
+            } catch {
+                print(error)
+            }
+        }
+        
+        return result
+    }
+    
+    var courses: [String] {
+        guard let appDelegate = getAppDelegate() else { return [] }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let coursesFetchRequest: NSFetchRequest<CourseEntity> = CourseEntity.fetchRequest()
+        
+        var result: [String] = []
+        managedContext.performAndWait {
+            do {
+                let courseEntities = try managedContext.fetch(coursesFetchRequest)
+                for courseEntity in courseEntities {
+                    result.append($0.name)
+                }
+                
+                print("Successfully retrieved \(result.count) courses")
             } catch {
                 print(error)
             }
@@ -68,6 +92,64 @@ extension HomeworkTaskPersistence {
             print("Successfully saved \(homeworkTask.name)")
         } catch {
             print(error)
+        }
+    }
+}
+
+extension HomeworkTaskPersistence {
+    func add(course: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let appDelegate = self?.getAppDelegate() else { return }
+            
+            self?.add(course: course, with: appDelegate)
+        }
+    }
+    
+    func delete(course: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let appDelegate = self?.getAppDelegate() else { return }
+            
+            self?.delete(course: course, with: appDelegate)
+        }
+    }
+    
+    private func add(course: String, with appDelegate: AppDelegate) {
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let courseEntity = NSEntityDescription.entity(forEntityName: "CourseEntity", in: managedContext)!
+        
+        let courseObject = NSManagedObject(entity: courseEntity, insertInto: managedContext)
+        courseObject.setValue(course, forKey: "name")
+        
+        do {
+            try managedContext.save()
+            
+            print("Successfully saved \(course)")
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func delete(course: String, with appDelegate: AppDelegate) {
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<CourseEntity> = CourseEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == \(course)")
+        
+        managedContext.performAndWait {
+            let courseEntitiesToDelete = try? managedContext.fetch(fetchRequest)
+            courseEntitiesToDelete.forEach {
+                managedContext.delete($0)
+                
+                print("Successfully deleted an object from context")
+            }
+            
+            do {
+                try managedContext.save()
+                
+                print("Successfully saved after deletion")
+            } catch {
+                print("Could not save context after deletion")
+            }
         }
     }
 }

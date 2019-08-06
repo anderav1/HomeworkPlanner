@@ -24,6 +24,7 @@
 		36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */; };
 		BCDC49EA80F171C80BFC0C94 /* Pods_HomeworkPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */; };
 		C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */; };
+		C4F0ED2D22F9F38000F8984E /* CourseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F0ED2C22F9F38000F8984E /* CourseListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		57E3081D8D2EDF1062BF4A34 /* Pods-HomeworkPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeworkPlanner.release.xcconfig"; path = "Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTaskPersistence.swift; sourceTree = "<group>"; };
+		C4F0ED2C22F9F38000F8984E /* CourseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewController.swift; sourceTree = "<group>"; };
 		FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeworkPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 		362CFF6222EFA7F3006FDFAF /* HomeworkPlanner */ = {
 			isa = PBXGroup;
 			children = (
+				C4F0ED2B22F9F34B00F8984E /* Course List */,
 				C4EECF4022F0ADC300F634ED /* Persistence */,
 				362CFF8B22EFAA5D006FDFAF /* Task */,
 				362CFF7922EFA8BD006FDFAF /* Supporting Files */,
@@ -169,6 +172,14 @@
 				C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		C4F0ED2B22F9F34B00F8984E /* Course List */ = {
+			isa = PBXGroup;
+			children = (
+				C4F0ED2C22F9F38000F8984E /* CourseListViewController.swift */,
+			);
+			path = "Course List";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +304,7 @@
 				362CFF6622EFA7F3006FDFAF /* TaskCreationViewController.swift in Sources */,
 				362CFF7F22EFA990006FDFAF /* TaskListViewController.swift in Sources */,
 				362CFF6422EFA7F3006FDFAF /* AppDelegate.swift in Sources */,
+				C4F0ED2D22F9F38000F8984E /* CourseListViewController.swift in Sources */,
 				362CFF8D22EFAB44006FDFAF /* HomeworkTask.swift in Sources */,
 				362CFF8A22EFA9FC006FDFAF /* TaskCalendarModel.swift in Sources */,
 				362CFF6C22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld in Sources */,

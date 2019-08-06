@@ -11,9 +11,10 @@ extension CourseListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set up model
+        model = CourseListModel(delegate: self, persistence: HomeworkTaskPersistence())
         
-        
+        navigationItem.title = "My Courses"
+        navigationItem.rightBarButtonItem = editButtonItem
     }
 }
 
@@ -24,7 +25,13 @@ extension CourseListViewController: CourseListModelDelegate {
 }
 
 extension CourseListViewController: UITableViewDelegate {
-    
+    // Swiping a table cell will trigger delete in editing mode
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            model.delete(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .right)
+        }
+    }
 }
 
 extension CourseListViewController: UITableViewDataSource {
@@ -40,13 +47,6 @@ extension CourseListViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            model.delete(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .right)
-        }
-    }
 }
 
 extension CourseListViewController {
@@ -55,7 +55,5 @@ extension CourseListViewController {
             model.add(course: newCourse)
         }
     }
-    
-    
 }
 

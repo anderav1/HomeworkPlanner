@@ -26,12 +26,6 @@ extension CourseListModel {
         delegate?.dataChanged()
     }
     
-//    func delete(course: String, at index: Int) {
-//        persistence.delete(course: course)
-//        courseList.remove(at: index)
-//        delegate?.dataChanged()
-//    }
-    
     func delete(at index: Int) {
         persistence.delete(course: courseList[index])
         courseList.remove(at: index)

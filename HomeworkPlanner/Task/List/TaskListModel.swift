@@ -16,7 +16,7 @@ enum SortMode: CaseIterable {
 }
 
 protocol HWTaskListModelDelegate: class {
-    func dataRefreshed()
+    func dataChanged()
 }
 
 final class HWTaskListModel {
@@ -62,13 +62,21 @@ extension HWTaskListModel {
     func searchList(searchText: String) {
         guard !searchText.isEmpty else {
             displayedHomeworkTasks = allHomeworkTasks
-            delegate?.dataRefreshed()
+            delegate?.dataChanged()
             return
         }
         
         displayedHomeworkTasks = allHomeworkTasks.filter { task in
             task.name.lowercased().contains(searchText.lowercased()) || task.course.lowercased().contains(searchText.lowercased()) || task.taskDescription?.lowercased().contains(searchText.lowercased()) ?? false
         }
+    }
+    
+    func delete(at index: Int) {
+        let taskToDelete: HomeworkTask = displayedHomeworkTasks[index]
+        //persistence.delete(homeworkTask: taskToDelete)
+        displayedHomeworkTasks.remove(at: index)
+        
+        // remove task from master list
     }
 }
 

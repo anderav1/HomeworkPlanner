@@ -26,7 +26,9 @@ extension HWTaskListViewController {
         super.viewDidLoad()
         
         model = HWTaskListModel(delegate: self, persistence: HomeworkTaskPersistence())
+        
         navigationItem.title = "Assignment List"
+        navigationItem.rightBarButtonItem = editButtonItem
         
         // configure menu
         #warning("configure menu")
@@ -86,10 +88,17 @@ extension HWTaskListViewController: UITableViewDelegate {
         
         performSegue(withIdentifier: "HWTaskCreation", sender: cell.homeworkTask)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            model.delete(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .right)
+        }
+    }
 }
 
 extension HWTaskListViewController: HWTaskListModelDelegate {
-    func dataRefreshed() {
+    func dataChanged() {
         tableView.reloadData()
     }
 }

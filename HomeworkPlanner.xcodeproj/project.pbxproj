@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,6 @@
 		36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */; };
 		BCDC49EA80F171C80BFC0C94 /* Pods_HomeworkPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */; };
 		C4EECF4222F0AE6800F634ED /* HomeworkTaskPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */; };
-		C4F21CC822F3695B009145BA /* HomeworkPlannerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F21CC722F3695B009145BA /* HomeworkPlannerCalendar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 		36944F8F22F24E0C00610FCF /* HWTaskListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HWTaskListTableViewCell.swift; sourceTree = "<group>"; };
 		57E3081D8D2EDF1062BF4A34 /* Pods-HomeworkPlanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeworkPlanner.release.xcconfig"; path = "Target Support Files/Pods-HomeworkPlanner/Pods-HomeworkPlanner.release.xcconfig"; sourceTree = "<group>"; };
 		C4EECF4122F0AE6800F634ED /* HomeworkTaskPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkTaskPersistence.swift; sourceTree = "<group>"; };
-		C4F21CC722F3695B009145BA /* HomeworkPlannerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeworkPlannerCalendar.swift; sourceTree = "<group>"; };
 		FE0AD31DCDF091EBDD0E664D /* Pods_HomeworkPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeworkPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,7 +69,6 @@
 				341740DAFF6C65B41B1453C9 /* Pods-HomeworkPlanner.debug.xcconfig */,
 				57E3081D8D2EDF1062BF4A34 /* Pods-HomeworkPlanner.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -108,7 +105,6 @@
 				362CFF8B22EFAA5D006FDFAF /* Task */,
 				362CFF7922EFA8BD006FDFAF /* Supporting Files */,
 				362CFF9022EFC59C006FDFAF /* README.md */,
-				C4F21CC722F3695B009145BA /* HomeworkPlannerCalendar.swift */,
 			);
 			path = HomeworkPlanner;
 			sourceTree = "<group>";
@@ -302,7 +298,6 @@
 				362CFF6C22EFA7F3006FDFAF /* HomeworkPlanner.xcdatamodeld in Sources */,
 				362CFF8822EFA9E9006FDFAF /* TaskCalendarViewController.swift in Sources */,
 				362CFF7C22EFA96E006FDFAF /* TaskCreationModel.swift in Sources */,
-				C4F21CC822F3695B009145BA /* HomeworkPlannerCalendar.swift in Sources */,
 				36944F9022F24E0C00610FCF /* HWTaskListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

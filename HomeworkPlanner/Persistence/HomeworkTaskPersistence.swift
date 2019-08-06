@@ -94,6 +94,10 @@ extension HomeworkTaskPersistence {
             print(error)
         }
     }
+    
+    func deletePastHomeworkTasks() {
+        // delete from core data any task whose deadline has already passed
+    }
 }
 
 extension HomeworkTaskPersistence {

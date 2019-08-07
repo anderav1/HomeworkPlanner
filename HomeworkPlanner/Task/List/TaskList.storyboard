@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CDy-oU-yGA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--NavigationController-->
         <scene sceneID="8Du-jc-UYk">
             <objects>
-                <navigationController id="CDy-oU-yGA" sceneMemberID="viewController">
+                <navigationController title="NavigationController" id="CDy-oU-yGA" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BUh-2L-5kT">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -50,7 +50,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="5" textLabel="uyR-Mf-6sL" detailTextLabel="HDe-pa-Xxb" style="IBUITableViewCellStyleValue1" id="VJ3-2o-yc3" customClass="HWTaskListTableViewCell" customModule="HomeworkPlanner" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="5" reuseIdentifier="HWTaskCell" textLabel="uyR-Mf-6sL" detailTextLabel="HDe-pa-Xxb" style="IBUITableViewCellStyleValue1" id="VJ3-2o-yc3" customClass="HWTaskListTableViewCell" customModule="HomeworkPlanner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="TopLeft" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VJ3-2o-yc3" id="OBR-Nv-3Y0">
@@ -96,7 +96,7 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="viewCourseList:" destination="haO-4j-Ga5" eventType="touchUpInside" id="Ccs-2k-bJG"/>
+                                            <segue destination="L9G-vc-PwB" kind="show" id="6AD-eZ-b6a"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0A-TU-Ysi">
@@ -141,7 +141,7 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="viewCalendar:" destination="haO-4j-Ga5" eventType="touchUpInside" id="KPX-5b-l1q"/>
+                                            <segue destination="whn-x9-bfG" kind="show" id="nf8-vU-JHD"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -175,18 +175,29 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="courseListButton" destination="hob-eN-9dz" id="EnH-ws-ZJ9"/>
-                        <outlet property="menuButton" destination="V6q-3d-v7x" id="0OW-dO-HlU"/>
                         <outlet property="menuStackView" destination="8kG-wp-Ikm" id="OYJ-r3-EXr"/>
-                        <outlet property="searchBar" destination="2hT-5v-ixw" id="Mwp-7b-NZI"/>
-                        <outlet property="sortListButton" destination="szS-gN-kqj" id="lHb-Gl-Bik"/>
                         <outlet property="tableView" destination="Jjm-JY-XKw" id="f7g-Tx-CgD"/>
-                        <outlet property="viewCalendarButton" destination="bna-dr-vuf" id="rj9-rU-Wvn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XIU-qr-pLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1478" y="-94"/>
+        </scene>
+        <!--CourseList-->
+        <scene sceneID="4kp-QO-h4q">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CourseList" id="L9G-vc-PwB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qKM-Ui-Rb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1271" y="301"/>
+        </scene>
+        <!--TaskCalendar-->
+        <scene sceneID="CA2-vO-gAq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TaskCalendar" id="whn-x9-bfG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLA-Ra-RhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686" y="301"/>
         </scene>
     </scenes>
     <resources>

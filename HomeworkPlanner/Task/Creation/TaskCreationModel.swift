@@ -2,8 +2,6 @@ import EventKit
 import Foundation
 
 protocol HWTaskCreationModelDelegate: class {
-    var eventStore: EKEventStore { get }
-    
     func save(homeworkTask: HomeworkTask)
 }
 
@@ -31,10 +29,12 @@ final class HWTaskCreationModel {
     let buttonText = "Save"
     
     private weak var delegate: HWTaskCreationModelDelegate?
+    private var eventStore: EKEventStore
     
-    init(homeworkTask: HomeworkTask, delegate: HWTaskCreationModelDelegate, isEditing: Bool) {
+    init(homeworkTask: HomeworkTask, delegate: HWTaskCreationModelDelegate, eventStore: EKEventStore, isEditing: Bool) {
         self.homeworkTask = homeworkTask
         self.delegate = delegate
+        self.eventStore = eventStore
         self.isEditing = isEditing
     }
 }
@@ -85,18 +85,18 @@ extension HWTaskCreationModel {
     
     // Fetch the corresponding reminder for an existing homework task
     func fetchReminder() -> EKReminder {
-        return delegate?.eventStore.calendarItem(withIdentifier: homeworkTask.reminderId!) as! EKReminder
+        return eventStore.calendarItem(withIdentifier: homeworkTask.reminderId!) as! EKReminder
     }
     
     // Create a reminder corresponding to the homework task
     private func createReminder(name: String, notes: String?) -> EKReminder {
-        let reminder = EKReminder(eventStore: delegate!.eventStore)
+        let reminder = EKReminder(eventStore: eventStore)
         reminder.title = name
-        reminder.calendar = delegate?.eventStore.defaultCalendarForNewReminders()
+        reminder.calendar = eventStore.defaultCalendarForNewReminders()
         reminder.notes = notes
         
         do {
-            try delegate?.eventStore.save(reminder, commit: true)
+            try eventStore.save(reminder, commit: true)
             
             print("Successfully saved reminder for \(homeworkTask.name)")
         } catch {
@@ -125,7 +125,7 @@ extension HWTaskCreationModel {
         reminder.addAlarm(alarm)
         
         do {
-            try delegate?.eventStore.commit()
+            try eventStore.commit()
             print("Alarm successfully added to reminder")
         } catch {
             print("Error: Could not save reminder alarm to event store.")

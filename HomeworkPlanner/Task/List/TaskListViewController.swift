@@ -2,23 +2,15 @@ import UIKit
 import EventKit
 
 final class HWTaskListViewController: UIViewController {
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var menuStackView: UIStackView!
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    
-    // menu buttons
-    @IBOutlet weak var courseListButton: UIButton!
-    @IBOutlet weak var newAssignmentButton: UIButton!
-    @IBOutlet weak var sortListButton: UIButton!
-    @IBOutlet weak var viewCalendarButton: UIButton!
     
     private var eventStore: EKEventStore!
     private var model: HWTaskListModel!
     
     private var menuIsVisible = false
     
-    #warning("Other features to add: filter list, delete items, add task priority")
+    #warning("Other features to add: filter list, task priority")
 }
 
 extension HWTaskListViewController {
@@ -59,9 +51,17 @@ extension HWTaskListViewController {
                 return sender is HomeworkTask
             }
             
-            let hwTaskCreationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, isEditing: taskExists)
+            let hwTaskCreationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, eventStore: self.eventStore, isEditing: taskExists)
             creationViewController.setup(model: hwTaskCreationModel)
-        } else if let courseListViewController = segue.destination as? 
+            
+        } else if let courseListViewController = segue.destination as? CourseListViewController {
+            let courseListModel = CourseListModel(delegate: courseListViewController, persistence: HomeworkTaskPersistence())
+            courseListViewController.setup(model: courseListModel)
+            
+        } else if let calendarViewController = segue.destination as? HWTaskCalendarViewController {
+            let calendarModel = HWTaskCalendarModel(homeworkTasks: self.model.allHomeworkTasks)
+            calendarViewController.setup(model: calendarModel)
+        }
     }
 }
 
@@ -119,10 +119,6 @@ extension HWTaskListViewController {
         menuIsVisible = !menuIsVisible
     }
     
-    @IBAction private func viewCourseList(_ sender: UIButton) {
-        // segue to course list view
-    }
-    
     @IBAction private func sortList(_ sender: UIButton) {
         // trigger an alert to choose sort mode
         let alert = UIAlertController(title: "Sort list by...", message: nil, preferredStyle: .alert)
@@ -136,9 +132,5 @@ extension HWTaskListViewController {
         }
         
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    @IBAction private func viewCalendar(_ sender: UIButton) {
-        // segue to calendar view
     }
 }

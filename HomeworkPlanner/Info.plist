@@ -25,7 +25,7 @@
 	<key>NSRemindersUsageDescription</key>
 	<string>"Homework Planner creates &amp; edits reminders &amp; alarms."</string>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>TaskList</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

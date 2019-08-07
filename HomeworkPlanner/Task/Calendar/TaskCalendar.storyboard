@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="69r-CI-v2O">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -77,11 +77,13 @@
                                             <constraint firstAttribute="bottom" secondItem="WAJ-bH-waX" secondAttribute="bottom" constant="5" id="wAn-gx-VaC"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="alarmDotIndicator" destination="WAJ-bH-waX" id="FPs-Ks-lXv"/>
                                             <outlet property="dateLabel" destination="pbe-Ct-w7X" id="4SS-iD-PYR"/>
+                                            <outlet property="tasksDueLabel" destination="8WR-pn-YkX" id="s6T-bE-49Y"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dps-25-syG">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="calendarHeader" id="dps-25-syG" customClass="CalendarHeader" customModule="HomeworkPlanner" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="350" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -98,6 +100,9 @@
                                         <constraint firstItem="xAw-Kc-jti" firstAttribute="centerY" secondItem="dps-25-syG" secondAttribute="centerY" id="lIC-Eo-hbL"/>
                                         <constraint firstItem="xAw-Kc-jti" firstAttribute="centerX" secondItem="dps-25-syG" secondAttribute="centerX" id="tMy-er-owo"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="monthLabel" destination="xAw-Kc-jti" id="9Ut-ut-8ZK"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="69r-CI-v2O" id="R0N-cg-pgE"/>
@@ -116,7 +121,6 @@
                     <connections>
                         <outlet property="calendarView" destination="2de-NK-A0Y" id="s42-cf-Icf"/>
                         <outlet property="leftSwipeRecognizer" destination="ynn-no-azt" id="Xz3-xn-eXU"/>
-                        <outlet property="monthLabel" destination="xAw-Kc-jti" id="jnx-gR-4h8"/>
                         <outlet property="rightSwipeRecognizer" destination="CUL-bL-fIq" id="L8I-JN-ciQ"/>
                     </connections>
                 </viewController>

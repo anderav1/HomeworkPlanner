@@ -3,6 +3,7 @@ import UIKit
 
 // Derived from the PokemonPersistence class discussed during class
 final class HomeworkTaskPersistence {
+    // Retrieve saved homework tasks
     var homeworkTasks: [HomeworkTask] {
         guard let appDelegate = getAppDelegate() else { return [] }
         
@@ -25,6 +26,7 @@ final class HomeworkTaskPersistence {
         return result
     }
     
+    // Retrieve course list
     var courses: [String] {
         guard let appDelegate = getAppDelegate() else { return [] }
         
@@ -36,9 +38,7 @@ final class HomeworkTaskPersistence {
         managedContext.performAndWait {
             do {
                 let courseEntities = try managedContext.fetch(coursesFetchRequest)
-                for courseEntity in courseEntities {
-                    result.append($0.name)
-                }
+                result = courseEntities.compactMap { $0.name }
                 
                 print("Successfully retrieved \(result.count) courses")
             } catch {
@@ -55,6 +55,15 @@ final class HomeworkTaskPersistence {
             guard let appDelegate = self?.getAppDelegate() else { return }
             
             self?.save(homeworkTask: homeworkTask, with: appDelegate)
+        }
+    }
+    
+    // Delete a homework task from core data
+    func delete(homeworkTask: HomeworkTask) {
+        DispatchQueue.main.async { [weak self] in
+            guard let appDelegate = self?.getAppDelegate() else { return }
+            
+            self?.delete(homeworkTask: homeworkTask, with: appDelegate)
         }
     }
     
@@ -92,6 +101,30 @@ extension HomeworkTaskPersistence {
             print("Successfully saved \(homeworkTask.name)")
         } catch {
             print(error)
+        }
+    }
+    
+    private func delete(homeworkTask: HomeworkTask, with appDelegate: AppDelegate) {
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<HomeworkTaskEntity> = HomeworkTaskEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == \(homeworkTask.id)")
+        
+        managedContext.performAndWait {
+            let hwTaskEntitiesToDelete = try? managedContext.fetch(fetchRequest)
+            hwTaskEntitiesToDelete?.forEach {
+                managedContext.delete($0)
+                
+                print("Successfully deleted an object from context")
+            }
+            
+            do {
+                try managedContext.save()
+                
+                print("Successfully saved after deletion")
+            } catch {
+                print("Could not save context after deletion")
+            }
         }
     }
     
@@ -141,7 +174,7 @@ extension HomeworkTaskPersistence {
         
         managedContext.performAndWait {
             let courseEntitiesToDelete = try? managedContext.fetch(fetchRequest)
-            courseEntitiesToDelete.forEach {
+            courseEntitiesToDelete?.forEach {
                 managedContext.delete($0)
                 
                 print("Successfully deleted an object from context")

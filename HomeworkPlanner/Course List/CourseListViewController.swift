@@ -16,6 +16,10 @@ extension CourseListViewController {
         navigationItem.title = "My Courses"
         navigationItem.rightBarButtonItem = editButtonItem
     }
+    
+    func setup(model: CourseListModel) {
+        self.model = model
+    }
 }
 
 extension CourseListViewController: CourseListModelDelegate {

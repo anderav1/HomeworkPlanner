@@ -24,7 +24,7 @@ final class HWTaskListModel {
     
     private(set) var displayedHomeworkTasks: [HomeworkTask] = [] // tasks currently being displayed
     private var storedHomeworkTasks: [HomeworkTask] = [] // tasks saved in persistence, unsorted
-    private var allHomeworkTasks: [HomeworkTask] = [] // master list, sorted by deadline
+    var allHomeworkTasks: [HomeworkTask] = [] // master list, sorted by deadline
     
     var reminderList: [EKReminder] = []
     
@@ -73,7 +73,7 @@ extension HWTaskListModel {
     
     func delete(at index: Int) {
         let taskToDelete: HomeworkTask = displayedHomeworkTasks[index]
-        //persistence.delete(homeworkTask: taskToDelete)
+        homeworkPersistence.delete(homeworkTask: taskToDelete)
         displayedHomeworkTasks.remove(at: index)
         
         // remove task from master list

@@ -28,33 +28,33 @@ extension HWTaskListViewController {
     }
     
     // the event store must request permission to access the device's reminders
-    override func viewWillAppear(_ animated: Bool) {
-        let permissionStatus = EKEventStore.authorizationStatus(for: .reminder)
-        switch permissionStatus {
-        case .notDetermined:
-            eventStore.requestAccess(to: .reminder, completion: { (granted: Bool, error: Error?) -> Void in
-                if granted {
-                    print("Access to reminders successfully granted.")
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        self?.loadView()
-                        self?.dataChanged()
-                    }
-                } else {
-                    print("Homework Planner does not have permission to access reminders.")
-                    
-                    self.permissionDeniedAlert()
-                }
-            })
-        case .restricted, .denied:
-            permissionDeniedAlert()
-        case .authorized:
-            DispatchQueue.main.async { [weak self] in
-                self?.loadView()
-                self?.dataChanged()
-            }
-        }
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        let permissionStatus = EKEventStore.authorizationStatus(for: .reminder)
+//        switch permissionStatus {
+//        case .notDetermined:
+//            eventStore.requestAccess(to: .reminder, completion: { (granted: Bool, error: Error?) -> Void in
+//                if granted {
+//                    print("Access to reminders successfully granted.")
+//
+//                    DispatchQueue.main.async { [weak self] in
+//                        self?.loadView()
+//                        self?.dataChanged()
+//                    }
+//                } else {
+//                    print("Homework Planner does not have permission to access reminders.")
+//
+//                    self.permissionDeniedAlert()
+//                }
+//            })
+//        case .restricted, .denied:
+//            permissionDeniedAlert()
+//        case .authorized:
+//            DispatchQueue.main.async { [weak self] in
+//                self?.loadView()
+//                self?.dataChanged()
+//            }
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let creationViewController = segue.destination as? HWTaskCreationViewController {
@@ -81,20 +81,20 @@ extension HWTaskListViewController {
     }
 }
     
-extension HWTaskListViewController {
-    private func permissionDeniedAlert() {
-        let alert = UIAlertController(title: "Homework Planner cannot access your calendar reminders", message: "Change this permission in your settings", preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: "Close app", style: .default) { (action) -> Void in
-            DispatchQueue.main.async {
-                exit(0)
-            }
-        }
-        alert.addAction(action)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-}
+//extension HWTaskListViewController {
+//    private func permissionDeniedAlert() {
+//        let alert = UIAlertController(title: "Homework Planner cannot access your calendar reminders", message: "Change this permission in your settings", preferredStyle: .alert)
+//
+//        let action = UIAlertAction(title: "Close app", style: .default) { (action) -> Void in
+//            DispatchQueue.main.async {
+//                exit(0)
+//            }
+//        }
+//        alert.addAction(action)
+//
+//        self.present(alert, animated: true, completion: nil)
+//    }
+//}
 
 extension HWTaskListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

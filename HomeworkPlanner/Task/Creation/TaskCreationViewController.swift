@@ -98,8 +98,45 @@ extension HWTaskCreationViewController {
             alarmAmount = Int(alarmStepper.value)
         }
         
-        model.saveHomeworkTask(name: nameField.text!, course: courseField.text!, deadline: datePicker.date, taskDescription: descriptionField.text, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
+        // ensure access to reminders before saving
+        let permissionStatus = EKEventStore.authorizationStatus(for: .reminder)
+        switch permissionStatus {
+        case .notDetermined:
+            eventStore.requestAccess(to: .reminder, completion: { (granted: Bool, error: Error?) -> Void in
+                if granted {
+                    print("Access to reminders successfully granted.")
         
-        navigationController?.popViewController(animated: true)
+                    self.model.saveHomeworkTask(name: self.nameField.text!, course: self.courseField.text!, deadline: self.datePicker.date, taskDescription: self.descriptionField.text, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    print("Homework Planner does not have permission to access reminders.")
+        
+                    self.permissionDeniedAlert()
+                }
+            })
+            
+        case .restricted, .denied:
+            permissionDeniedAlert()
+            
+        case .authorized:
+            // save the homework task
+            model.saveHomeworkTask(name: nameField.text!, course: courseField.text!, deadline: datePicker.date, taskDescription: descriptionField.text, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
+            navigationController?.popViewController(animated: true)
+        }
+    }
+}
+
+extension HWTaskCreationViewController {
+    private func permissionDeniedAlert() {
+        let alert = UIAlertController(title: "Homework Planner cannot access your calendar reminders", message: "Change this permission in your settings", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Close app", style: .default) { (action) -> Void in
+            DispatchQueue.main.async {
+                exit(0)
+            }
+        }
+        alert.addAction(action)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }

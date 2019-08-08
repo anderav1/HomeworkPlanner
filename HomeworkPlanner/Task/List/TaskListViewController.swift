@@ -80,21 +80,6 @@ extension HWTaskListViewController {
         }
     }
 }
-    
-//extension HWTaskListViewController {
-//    private func permissionDeniedAlert() {
-//        let alert = UIAlertController(title: "Homework Planner cannot access your calendar reminders", message: "Change this permission in your settings", preferredStyle: .alert)
-//
-//        let action = UIAlertAction(title: "Close app", style: .default) { (action) -> Void in
-//            DispatchQueue.main.async {
-//                exit(0)
-//            }
-//        }
-//        alert.addAction(action)
-//
-//        self.present(alert, animated: true, completion: nil)
-//    }
-//}
 
 extension HWTaskListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

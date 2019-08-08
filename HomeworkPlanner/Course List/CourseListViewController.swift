@@ -13,6 +13,8 @@ extension CourseListViewController {
         
         model = CourseListModel(delegate: self, persistence: HomeworkTaskPersistence())
         
+        addCourseTextField.delegate = self
+        
         navigationItem.title = "My Courses"
         navigationItem.rightBarButtonItem = editButtonItem
     }
@@ -53,11 +55,14 @@ extension CourseListViewController: UITableViewDataSource {
     }
 }
 
-extension CourseListViewController {
-    @IBAction func addCourse(_ sender: UITextField) {
-        if let newCourse = sender.text, !newCourse.isEmpty {
+extension CourseListViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if let newCourse = textField.text, !newCourse.isEmpty {
             model.add(course: newCourse)
         }
+        textField.text = ""
+        dataChanged()
+        return true
     }
 }
-

@@ -32,9 +32,6 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="addCourse:" destination="Lj3-AR-XR9" eventType="editingDidEnd" id="7Ao-qe-rZp"/>
-                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>

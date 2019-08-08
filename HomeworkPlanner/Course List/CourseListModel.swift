@@ -23,7 +23,7 @@ extension CourseListModel {
     func add(course: String) {
         persistence.add(course: course)
         courseList.append(course)
-        delegate?.dataChanged()
+        //delegate?.dataChanged()
     }
     
     func delete(at index: Int) {

@@ -22,9 +22,12 @@ protocol HWTaskListModelDelegate: class {
 final class HWTaskListModel {
     private let homeworkPersistence: HomeworkTaskPersistence
     
-    private(set) var displayedHomeworkTasks: [HomeworkTask] = [] // tasks currently being displayed
-    private var storedHomeworkTasks: [HomeworkTask] = [] // tasks saved in persistence, unsorted
-    var allHomeworkTasks: [HomeworkTask] = [] // master list, sorted by deadline
+    private(set) var displayedTasks: [HomeworkTask] = [] // tasks currently being displayed
+    var storedTasks: [HomeworkTask] {
+        // retrieve homework tasks form core data
+        // updated when tasks are saved to or deleted from persistence
+        return homeworkPersistence.homeworkTasks.sorted(by: { $0.deadline < $1.deadline })
+    }
     
     var reminderList: [EKReminder] = []
     
@@ -32,49 +35,45 @@ final class HWTaskListModel {
     
     private weak var delegate: HWTaskListModelDelegate?
     
-    var count: Int { return displayedHomeworkTasks.count }
+    var count: Int { return displayedTasks.count }
     
     init(delegate: HWTaskListModelDelegate, persistence: HomeworkTaskPersistence) {
         self.delegate = delegate
         self.homeworkPersistence = persistence
         
-        // retrieve homework tasks from persistence
-        storedHomeworkTasks = persistence.homeworkTasks
-        
-        allHomeworkTasks = storedHomeworkTasks.sorted(by: { $0.deadline < $1.deadline })
-        displayedHomeworkTasks = allHomeworkTasks // all tasks display by default
+        displayedTasks = storedTasks // all tasks display by default
     }
 }
 
 extension HWTaskListModel {
     func homeworkTask(atIndex index: Int) -> HomeworkTask? {
-        return displayedHomeworkTasks[index]
+        return displayedTasks[index]
     }
     
     func sortList(by sortMode: SortMode) {
         switch sortMode {
-        case .deadline: displayedHomeworkTasks.sort(by: { $0.deadline < $1.deadline })
-        case .course: displayedHomeworkTasks.sort(by: { $0.course < $1.course && $0.deadline < $1.deadline })
-        case .name: displayedHomeworkTasks.sort(by: { $0.name < $1.name })
+        case .deadline: displayedTasks.sort(by: { $0.deadline < $1.deadline })
+        case .course: displayedTasks.sort(by: { $0.course < $1.course && $0.deadline < $1.deadline })
+        case .name: displayedTasks.sort(by: { $0.name < $1.name })
         }
     }
     
     func searchList(searchText: String) {
         guard !searchText.isEmpty else {
-            displayedHomeworkTasks = allHomeworkTasks
+            displayedTasks = storedTasks
             delegate?.dataChanged()
             return
         }
         
-        displayedHomeworkTasks = allHomeworkTasks.filter { task in
+        displayedTasks = storedTasks.filter { task in
             task.name.lowercased().contains(searchText.lowercased()) || task.course.lowercased().contains(searchText.lowercased()) || task.taskDescription?.lowercased().contains(searchText.lowercased()) ?? false
         }
     }
     
     func delete(at index: Int) {
-        let taskToDelete: HomeworkTask = displayedHomeworkTasks[index]
+        let taskToDelete: HomeworkTask = displayedTasks[index]
         homeworkPersistence.delete(homeworkTask: taskToDelete)
-        displayedHomeworkTasks.remove(at: index)
+        displayedTasks.remove(at: index)
         
         // remove task from master list
     }
@@ -82,13 +81,13 @@ extension HWTaskListModel {
 
 extension HWTaskListModel: HWTaskCreationModelDelegate {
     func save(homeworkTask: HomeworkTask) {
-        if let existingTaskIndex = allHomeworkTasks.firstIndex(where: { $0.id == homeworkTask.id }) {
-            homeworkPersistence.delete(homeworkTask: allHomeworkTasks[existingTaskIndex])
+        if let existingTaskIndex = storedTasks.firstIndex(where: { $0.id == homeworkTask.id }) {
+            homeworkPersistence.delete(homeworkTask: storedTasks[existingTaskIndex])
         }
         
         homeworkPersistence.save(homeworkTask: homeworkTask)
         
-        // update the master list
-        allHomeworkTasks = homeworkPersistence.homeworkTasks.sorted(by: { $0.deadline < $1.deadline })
+        // refresh the data in the view controller
+        delegate?.dataChanged()
     }
 }

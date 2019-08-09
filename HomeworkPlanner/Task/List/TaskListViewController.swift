@@ -31,6 +31,7 @@ extension HWTaskListViewController {
             toggleMenu()
         }
         
+        #warning("Test to see if this block is necessary")
         if segue.identifier == "newTaskCreation", let creationViewController = segue.destination as? HWTaskCreationViewController {
             // inherit event store
             creationViewController.eventStore = self.eventStore
@@ -57,7 +58,7 @@ extension HWTaskListViewController {
             courseListViewController.setup(model: courseListModel)
             
         } else if let calendarViewController = segue.destination as? HWTaskCalendarViewController { // segue to hw calendar
-            let calendarModel = HWTaskCalendarModel(homeworkTasks: self.model.allHomeworkTasks)
+            let calendarModel = HWTaskCalendarModel(homeworkTasks: self.model.storedTasks)
             calendarViewController.setup(model: calendarModel)
         }
     }

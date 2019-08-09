@@ -13,7 +13,7 @@
         <!--Task Creation View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HWTaskCreationViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HWTaskCreationViewController" customModule="HomeworkPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,7 +95,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S3N-gx-k7w" userLabel="Description Field">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S3N-gx-k7w" userLabel="Description Field">
                                                 <rect key="frame" x="0.0" y="45" width="355" height="120"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -183,7 +183,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="iS0-hS-ddq" id="wdg-fu-96R"/>
+                        <outlet property="addButton" destination="iS0-hS-ddq" id="dls-Lh-ZdT"/>
                         <outlet property="alarmStepper" destination="I59-qL-joZ" id="DBr-49-nWY"/>
                         <outlet property="alarmTimeAmountLabel" destination="CYT-aW-Abp" id="R9z-Cn-iPu"/>
                         <outlet property="alarmTimeUnitsField" destination="D06-vY-lh7" id="kLb-3G-fn9"/>

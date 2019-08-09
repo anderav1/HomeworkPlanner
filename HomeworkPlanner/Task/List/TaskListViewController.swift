@@ -19,16 +19,26 @@ extension HWTaskListViewController {
         
         model = HWTaskListModel(delegate: self, persistence: HomeworkTaskPersistence())
         
-        navigationItem.title = "Assignment List"
+        navigationItem.title = "Assignments"
         navigationItem.rightBarButtonItem = editButtonItem
         
-        // configure menu
-        #warning("configure menu")
         menuStackView.isHidden = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let creationViewController = segue.destination as? HWTaskCreationViewController { // segue to task creation
+        if menuIsVisible {
+            toggleMenu()
+        }
+        
+        if segue.identifier == "newTaskCreation", let creationViewController = segue.destination as? HWTaskCreationViewController {
+            // inherit event store
+            creationViewController.eventStore = self.eventStore
+            
+            let homeworkTask = HomeworkTask.defaultHomeworkTask
+            let creationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, eventStore: creationViewController.eventStore, isEditing: false)
+            creationViewController.setup(model: creationModel)
+            
+        } else if let creationViewController = segue.destination as? HWTaskCreationViewController { // segue to task creation
             // inherit event store
             creationViewController.eventStore = self.eventStore
             
@@ -38,7 +48,7 @@ extension HWTaskListViewController {
                 return sender is HomeworkTask
             }
             
-            let hwTaskCreationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, eventStore: self.eventStore, isEditing: taskExists)
+            let hwTaskCreationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, eventStore: creationViewController.eventStore, isEditing: taskExists)
             creationViewController.setup(model: hwTaskCreationModel)
             
         } else if let courseListViewController = segue.destination as? CourseListViewController { // segue to course list
@@ -100,6 +110,10 @@ extension HWTaskListViewController: UISearchBarDelegate {
 extension HWTaskListViewController {
     // Clicking the menu button toggles the menu
     @IBAction private func menuButtonClicked(_ sender: UIBarButtonItem) {
+        toggleMenu()
+    }
+    
+    private func toggleMenu() {
         menuStackView.isHidden = !menuIsVisible
         
         // update the menuIsVisible bool
@@ -107,6 +121,9 @@ extension HWTaskListViewController {
     }
     
     @IBAction private func sortList(_ sender: UIButton) {
+        // close the menu
+        toggleMenu()
+        
         // trigger an alert to choose sort mode
         let alert = UIAlertController(title: "Sort list by...", message: nil, preferredStyle: .alert)
         

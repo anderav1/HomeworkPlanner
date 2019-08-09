@@ -1,5 +1,9 @@
 import UIKit
 
+final class CourseCell: UITableViewCell {
+    @IBOutlet weak var titleLabel: UILabel!
+}
+
 final class CourseListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addCourseTextField: UITextField!
@@ -46,10 +50,10 @@ extension CourseListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "courseCell", for: indexPath) as! CourseCell
         
         // set up the cell
-        cell.textLabel?.text = model.courseList[indexPath.row]
+        cell.titleLabel.text = model.courseList[indexPath.row]
         
         return cell
     }

@@ -106,8 +106,15 @@ extension HWTaskCreationViewController {
                 if granted {
                     print("Access to reminders successfully granted.")
         
-                    self.model.saveHomeworkTask(name: self.nameField.text!, course: self.courseField.text!, deadline: self.datePicker.date, taskDescription: self.descriptionField.text, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
+                    DispatchQueue.main.async { [weak self] in
+                        if let name = self?.nameField.text, let course = self?.courseField.text, let deadline = self?.datePicker.date {
+                            let taskDescription = self?.descriptionField.text
+                            
+                            self?.model.saveHomeworkTask(name: name, course: course, deadline: deadline, taskDescription: taskDescription, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
+                        }
+                    }
                     self.navigationController?.popViewController(animated: true)
+                    
                 } else {
                     print("Homework Planner does not have permission to access reminders.")
         

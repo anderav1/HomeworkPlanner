@@ -55,7 +55,7 @@ extension HomeworkTask {
     }
 }
 
-// Persistance functionality derived from the in-class persistence lectures
+// Persistance functionality derived from the in-class core data lectures
 extension HomeworkTask {
     static func from(_ homeworkTaskEntities: [HomeworkTaskEntity]) -> [HomeworkTask] {
         return homeworkTaskEntities.compactMap { HomeworkTask.from($0) }

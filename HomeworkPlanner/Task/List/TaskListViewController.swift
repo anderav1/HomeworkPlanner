@@ -27,11 +27,11 @@ extension HWTaskListViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if menuIsVisible {
+            print("Closing menu")
             toggleMenu()
         }
         
         if segue.identifier == "newTaskCreation", let creationViewController = segue.destination as? HWTaskCreationViewController {
-            print("Starting segue to new task creation")
             // inherit event store
             creationViewController.eventStore = self.eventStore
             
@@ -135,6 +135,9 @@ extension HWTaskListViewController {
             }
             alert.addAction(sortAction)
         }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
         
         self.present(alert, animated: true, completion: nil)
     }

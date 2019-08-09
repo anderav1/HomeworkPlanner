@@ -55,8 +55,6 @@ class HWTaskCreationViewController: UIViewController {
         courseField.text = model.homeworkTask.course
         descriptionField.text = model.homeworkTask.taskDescription ?? ""
     }
-
-
 }
 
 extension HWTaskCreationViewController {
@@ -145,5 +143,29 @@ extension HWTaskCreationViewController {
         alert.addAction(action)
         
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension HWTaskCreationViewController {
+    @IBAction func selectCourseFromList(_ sender: UIButton) {
+        let courses = HomeworkTaskPersistence().courses
+        if !courses.isEmpty {
+            let alert = UIAlertController(title: "Choose course", message: "Configure your course list in the menu under \"My Course List\"", preferredStyle: .alert)
+            
+            for course in courses {
+                let action = UIAlertAction(title: course, style: .default) { (action) -> Void in
+                    self.courseField.text = course
+                }
+                alert.addAction(action)
+            }
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "You have not created a course list", message: "Configure your course list in the menu under \"My Course List\"", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

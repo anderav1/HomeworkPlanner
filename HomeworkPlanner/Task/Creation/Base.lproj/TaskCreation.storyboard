@@ -47,13 +47,17 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3Kr-80-cLA" userLabel="Course Stack View">
                                                 <rect key="frame" x="0.0" y="50" width="355" height="40"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScU-jV-vJJ" userLabel="Course Label">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWU-oM-ecp" userLabel="Course Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="67" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vpM-yA-JtT" userLabel="Course Field">
+                                                        <state key="normal" title="Course">
+                                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="selectCourseFromList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="El5-FJ-Irg"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Click 'Course' to pick from your list" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vpM-yA-JtT" userLabel="Course Field">
                                                         <rect key="frame" x="82" y="0.0" width="273" height="40"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -81,9 +85,9 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="onG-xz-GGc" firstAttribute="height" secondItem="vpM-yA-JtT" secondAttribute="height" id="0xF-JB-Lgm"/>
+                                            <constraint firstItem="tWU-oM-ecp" firstAttribute="width" secondItem="bha-3K-Fwl" secondAttribute="width" id="Esi-5b-fTP"/>
                                             <constraint firstItem="kFl-yE-NCv" firstAttribute="width" secondItem="bha-3K-Fwl" secondAttribute="width" id="hBr-T3-V96"/>
                                             <constraint firstItem="onG-xz-GGc" firstAttribute="height" secondItem="1gu-XM-o6U" secondAttribute="height" id="xPj-4P-eKa"/>
-                                            <constraint firstItem="kFl-yE-NCv" firstAttribute="width" secondItem="ScU-jV-vJJ" secondAttribute="width" id="ynh-wc-KGt"/>
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="geY-et-5n8" userLabel="Description Stack View">

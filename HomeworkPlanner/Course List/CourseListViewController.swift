@@ -19,6 +19,9 @@ extension CourseListViewController {
         
         addCourseTextField.delegate = self
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         navigationItem.title = "My Courses"
         navigationItem.rightBarButtonItem = editButtonItem
     }

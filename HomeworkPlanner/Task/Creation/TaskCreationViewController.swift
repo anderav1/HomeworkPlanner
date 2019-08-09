@@ -52,7 +52,9 @@ class HWTaskCreationViewController: UIViewController {
         navigationItem.title = model.titleText
         
         nameField.text = model.homeworkTask.name
-        courseField.text = model.homeworkTask.course
+        if model.homeworkTask.course != "n/a" {
+            courseField.text = model.homeworkTask.course
+        }
         descriptionField.text = model.homeworkTask.taskDescription ?? ""
     }
 }
@@ -125,7 +127,7 @@ extension HWTaskCreationViewController {
             
         case .authorized:
             // save the homework task
-            model.saveHomeworkTask(name: nameField.text!, course: courseField.text!, deadline: datePicker.date, taskDescription: descriptionField.text, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
+            model.saveHomeworkTask(name: nameField.text!, course: courseField.text ?? "n/a", deadline: datePicker.date, taskDescription: descriptionField.text, alarmUnit: alarmUnit, alarmAmount: alarmAmount)
             navigationController?.popViewController(animated: true)
         }
     }

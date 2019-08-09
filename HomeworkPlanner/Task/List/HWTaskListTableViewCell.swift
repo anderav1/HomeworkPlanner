@@ -3,11 +3,12 @@ import UIKit
 final class HWTaskListTableViewCell: UITableViewCell {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
-    // include a reminder indicator
+    // include an alarm indicator
     
     private(set) var homeworkTask: HomeworkTask!
     
     func setup(with homeworkTask: HomeworkTask) {
+        print("Setting up cell for \(homeworkTask.name)")
         self.homeworkTask = homeworkTask
         
         nameLabel.text = homeworkTask.name
@@ -18,6 +19,6 @@ final class HWTaskListTableViewCell: UITableViewCell {
         
         detailLabel.text = "\(homeworkTask.course)\nDue \(deadlineString)"
         
-        // set reminder indicator
+        // set alarm indicator
     }
 }

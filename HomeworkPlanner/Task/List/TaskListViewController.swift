@@ -19,6 +19,9 @@ extension HWTaskListViewController {
         
         model = HWTaskListModel(delegate: self, persistence: HomeworkTaskPersistence())
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         navigationItem.title = "Assignments"
         navigationItem.rightBarButtonItem = editButtonItem
         
@@ -26,7 +29,7 @@ extension HWTaskListViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if menuIsVisible {
+        if !menuStackView.isHidden {
             print("Closing menu")
             toggleMenu()
         }
@@ -66,10 +69,13 @@ extension HWTaskListViewController {
 
 extension HWTaskListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(model.count)
         return model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let homeworkTask = model.displayedTasks[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "HWTaskCell", for: indexPath) as! HWTaskListTableViewCell
         cell.setup(with: model.homeworkTask(atIndex: indexPath.row)!)
         

@@ -35,6 +35,7 @@ final class HWTaskListModel {
     
     private weak var delegate: HWTaskListModelDelegate?
     
+    // number of tasks being displayed
     var count: Int { return displayedTasks.count }
     
     init(delegate: HWTaskListModelDelegate, persistence: HomeworkTaskPersistence) {
@@ -46,6 +47,7 @@ final class HWTaskListModel {
 }
 
 extension HWTaskListModel {
+    // Returns the displayed task at the given index
     func homeworkTask(atIndex index: Int) -> HomeworkTask? {
         return displayedTasks[index]
     }

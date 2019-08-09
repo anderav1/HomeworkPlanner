@@ -19,4 +19,5 @@ University & high school students
 * User can search the assignment list for a specific assignment using keywords from the title, course, or description fields
   * The search bar above the task list filters which assignments are displayed as soon as the user starts typing
 * Assignment list delete mode: user can check a box next to each assignment to be deleted, then delete them all with one button click
-  * Implemented via the editing bar button item in the navigation bar of the task list view controller
+  * Implemented via the editing bar button item in the navigation bar
+  * Edit mode is available for both the assignment list and the course list

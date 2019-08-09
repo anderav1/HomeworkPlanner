@@ -29,6 +29,9 @@ final class HWTaskCalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        calendarView.delegate = self
+        calendarView.dataSource = self
+        
         // configure scrolling & paging functionality
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode = .stopAtEachCalendarFrame

@@ -31,6 +31,7 @@ extension HWTaskListViewController {
         }
         
         if segue.identifier == "newTaskCreation", let creationViewController = segue.destination as? HWTaskCreationViewController {
+            print("Starting segue to new task creation")
             // inherit event store
             creationViewController.eventStore = self.eventStore
             

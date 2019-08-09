@@ -124,6 +124,9 @@
                                                         <subviews>
                                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="I59-qL-joZ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
+                                                                <connections>
+                                                                    <action selector="alarmAmountStepper:" destination="BYZ-38-t0r" eventType="valueChanged" id="udu-Kt-13B"/>
+                                                                </connections>
                                                             </stepper>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CYT-aW-Abp" userLabel="Time Amount Label">
                                                                 <rect key="frame" x="104" y="0.0" width="21" height="40"/>

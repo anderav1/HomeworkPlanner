@@ -31,7 +31,7 @@ class HWTaskCreationViewController: UIViewController {
         
         deadlineField.inputView = datePicker
         
-        alarmTimeUnitsField.addTarget(self, action: #selector(timeUnitsAlert), for: .touchUpInside)
+        alarmTimeUnitsField.addTarget(self, action: #selector(timeUnitsAlert), for: .editingDidBegin)
         
         // configure alarm elements
         alarmStepper.minimumValue = model.minReminderValue
@@ -39,7 +39,7 @@ class HWTaskCreationViewController: UIViewController {
         alarmStepper.stepValue = 1.0
         alarmStepper.value = Double(model.homeworkTask.alarmSettings?.timeAmount ?? 0)
        
-        let timeAmount = model.homeworkTask.alarmSettings?.timeAmount ?? 0
+        let timeAmount = Int(alarmStepper.value)
         alarmTimeAmountLabel.text = "\(timeAmount)"
         
         if let timeUnit = model.homeworkTask.alarmSettings?.timeUnit {
@@ -87,6 +87,10 @@ extension HWTaskCreationViewController {
         
         // display the alert
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func alarmAmountStepper(_ sender: UIStepper) {
+        alarmTimeAmountLabel.text = "\(Int(sender.value))"
     }
     
     @IBAction private func addButtonTapped(_ sender: UIButton) {

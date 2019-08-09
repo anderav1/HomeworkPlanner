@@ -20,7 +20,7 @@ enum TimeUnit: String, CaseIterable {
 final class HWTaskCreationModel {
     private(set) var homeworkTask: HomeworkTask
     
-    let minReminderValue = 1.0
+    let minReminderValue = 0.0
     let maxReminderValue = 60.0
     
     private var isEditing: Bool

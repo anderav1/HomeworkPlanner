@@ -58,6 +58,8 @@ extension HWTaskListModel {
         case .course: displayedTasks.sort(by: { $0.course < $1.course && $0.deadline < $1.deadline })
         case .name: displayedTasks.sort(by: { $0.name < $1.name })
         }
+        
+        delegate?.dataChanged()
     }
     
     func searchList(searchText: String) {
@@ -76,8 +78,6 @@ extension HWTaskListModel {
         let taskToDelete: HomeworkTask = displayedTasks[index]
         homeworkPersistence.delete(homeworkTask: taskToDelete)
         displayedTasks.remove(at: index)
-        
-        // remove task from master list
     }
 }
 
@@ -85,6 +85,9 @@ extension HWTaskListModel: HWTaskCreationModelDelegate {
     func save(homeworkTask: HomeworkTask) {
         if let existingTaskIndex = storedTasks.firstIndex(where: { $0.id == homeworkTask.id }) {
             homeworkPersistence.delete(homeworkTask: storedTasks[existingTaskIndex])
+            displayedTasks[existingTaskIndex] = homeworkTask
+        } else {
+            displayedTasks.append(homeworkTask)
         }
         
         homeworkPersistence.save(homeworkTask: homeworkTask)

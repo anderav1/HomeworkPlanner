@@ -110,7 +110,7 @@ extension HomeworkTaskPersistence {
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let fetchRequest: NSFetchRequest<HomeworkTaskEntity> = HomeworkTaskEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == \(homeworkTask.id)")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", homeworkTask.id as CVarArg)
         
         managedContext.performAndWait {
             let hwTaskEntitiesToDelete = try? managedContext.fetch(fetchRequest)

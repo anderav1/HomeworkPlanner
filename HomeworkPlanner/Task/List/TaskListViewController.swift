@@ -78,8 +78,10 @@ extension HWTaskListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! HWTaskListTableViewCell
-
-        performSegue(withIdentifier: "taskCreation", sender: cell.homeworkTask)
+        
+        if !isEditing {
+            performSegue(withIdentifier: "taskCreation", sender: cell.homeworkTask)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

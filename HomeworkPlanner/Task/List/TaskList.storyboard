@@ -76,7 +76,6 @@
                                         <connections>
                                             <outlet property="detailLabel" destination="HDe-pa-Xxb" id="NF1-HU-oXY"/>
                                             <outlet property="nameLabel" destination="uyR-Mf-6sL" id="4Gc-IK-RIg"/>
-                                            <segue destination="Mds-wx-tYg" kind="show" identifier="editTaskCreation" id="Q5j-QX-D88"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -111,7 +110,7 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Mds-wx-tYg" kind="show" identifier="newTaskCreation" id="nPK-pr-g6B"/>
+                                            <segue destination="Mds-wx-tYg" kind="show" identifier="taskCreation" id="nPK-pr-g6B"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szS-gN-kqj">
@@ -203,7 +202,4 @@
     <resources>
         <image name="hamburger-menu-icon" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="nPK-pr-g6B"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -34,16 +34,7 @@ extension HWTaskListViewController {
             toggleMenu()
         }
         
-        #warning("Test to see if this block is necessary")
-        if segue.identifier == "newTaskCreation", let creationViewController = segue.destination as? HWTaskCreationViewController {
-            // inherit event store
-            creationViewController.eventStore = self.eventStore
-            
-            let homeworkTask = HomeworkTask.defaultHomeworkTask
-            let creationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, eventStore: creationViewController.eventStore, isEditing: false)
-            creationViewController.setup(model: creationModel)
-            
-        } else if let creationViewController = segue.destination as? HWTaskCreationViewController { // segue to task creation
+        if let creationViewController = segue.destination as? HWTaskCreationViewController { // segue to task creation
             // inherit event store
             creationViewController.eventStore = self.eventStore
             
@@ -69,13 +60,10 @@ extension HWTaskListViewController {
 
 extension HWTaskListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(model.count)
         return model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let homeworkTask = model.displayedTasks[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "HWTaskCell", for: indexPath) as! HWTaskListTableViewCell
         cell.setup(with: model.homeworkTask(atIndex: indexPath.row)!)
         
@@ -90,8 +78,8 @@ extension HWTaskListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! HWTaskListTableViewCell
-        
-        performSegue(withIdentifier: "HWTaskCreation", sender: cell.homeworkTask)
+
+        performSegue(withIdentifier: "taskCreation", sender: cell.homeworkTask)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

@@ -27,37 +27,8 @@ extension HWTaskListViewController {
         menuStackView.isHidden = true
     }
     
-    // the event store must request permission to access the device's reminders
-//    override func viewWillAppear(_ animated: Bool) {
-//        let permissionStatus = EKEventStore.authorizationStatus(for: .reminder)
-//        switch permissionStatus {
-//        case .notDetermined:
-//            eventStore.requestAccess(to: .reminder, completion: { (granted: Bool, error: Error?) -> Void in
-//                if granted {
-//                    print("Access to reminders successfully granted.")
-//
-//                    DispatchQueue.main.async { [weak self] in
-//                        self?.loadView()
-//                        self?.dataChanged()
-//                    }
-//                } else {
-//                    print("Homework Planner does not have permission to access reminders.")
-//
-//                    self.permissionDeniedAlert()
-//                }
-//            })
-//        case .restricted, .denied:
-//            permissionDeniedAlert()
-//        case .authorized:
-//            DispatchQueue.main.async { [weak self] in
-//                self?.loadView()
-//                self?.dataChanged()
-//            }
-//        }
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let creationViewController = segue.destination as? HWTaskCreationViewController {
+        if let creationViewController = segue.destination as? HWTaskCreationViewController { // segue to task creation
             // inherit event store
             creationViewController.eventStore = self.eventStore
             
@@ -70,11 +41,11 @@ extension HWTaskListViewController {
             let hwTaskCreationModel = HWTaskCreationModel(homeworkTask: homeworkTask, delegate: model, eventStore: self.eventStore, isEditing: taskExists)
             creationViewController.setup(model: hwTaskCreationModel)
             
-        } else if let courseListViewController = segue.destination as? CourseListViewController {
+        } else if let courseListViewController = segue.destination as? CourseListViewController { // segue to course list
             let courseListModel = CourseListModel(delegate: courseListViewController, persistence: HomeworkTaskPersistence())
             courseListViewController.setup(model: courseListModel)
             
-        } else if let calendarViewController = segue.destination as? HWTaskCalendarViewController {
+        } else if let calendarViewController = segue.destination as? HWTaskCalendarViewController { // segue to hw calendar
             let calendarModel = HWTaskCalendarModel(homeworkTasks: self.model.allHomeworkTasks)
             calendarViewController.setup(model: calendarModel)
         }

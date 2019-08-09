@@ -82,6 +82,10 @@ extension HWTaskListModel {
 
 extension HWTaskListModel: HWTaskCreationModelDelegate {
     func save(homeworkTask: HomeworkTask) {
+        if let existingTaskIndex = allHomeworkTasks.firstIndex(where: { $0.id == homeworkTask.id }) {
+            homeworkPersistence.delete(homeworkTask: allHomeworkTasks[existingTaskIndex])
+        }
+        
         homeworkPersistence.save(homeworkTask: homeworkTask)
         
         // update the master list

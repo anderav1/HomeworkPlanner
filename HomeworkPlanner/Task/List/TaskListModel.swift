@@ -20,6 +20,7 @@ enum FilterMode: CaseIterable {
     case dueTomorrow
     case dueThisWeek
     case byCourse
+    case displayAll
     
     var title: String {
         switch self {
@@ -27,6 +28,7 @@ enum FilterMode: CaseIterable {
         case .dueTomorrow: return "Assignments due tomorrow"
         case .dueThisWeek: return "Assignments due this week"
         case .byCourse: return "Assignments for course..."
+        case .displayAll: return "Display all assignments"
         }
     }
 }
@@ -93,9 +95,10 @@ extension HWTaskListModel {
                     $0.deadline > Date() && $0.deadline < aWeekFromToday
                 }
             }
-        case .byCourse:
-            delegate?.courseFilterAlert()
+        case .byCourse: delegate?.courseFilterAlert()
+        case .displayAll: displayedTasks = storedTasks
         }
+        
         delegate?.dataChanged()
     }
     

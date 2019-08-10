@@ -16,7 +16,7 @@ University & high school students
 
 ## Stretch Goals
 * User can view a calendar of their upcoming assignments *(top-priority stretch goal; this is the one I most want to implement, if possible)
- * The calendar can only be viewed at this time, but in the future I would like to add functionality so that the user can tap a calendar cell to see a popover view listing all the homework tasks due as well as any reminder alarms set for that date
+  * The calendar can only be viewed at this time, but in the future I would like to add functionality so that the user can tap a calendar cell to see a popover view listing all the homework tasks due as well as any reminder alarms set for that date
 * User can search the assignment list for a specific assignment using keywords from the title, course, or description fields
   * The search bar above the task list filters which assignments are displayed as soon as the user starts typing
 * Assignment list delete mode: user can check a box next to each assignment to be deleted, then delete them all with one button click

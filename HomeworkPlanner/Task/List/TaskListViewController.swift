@@ -4,13 +4,14 @@ import EventKit
 final class HWTaskListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var menuStackView: UIStackView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private let eventStore: EKEventStore = EKEventStore()
     private var model: HWTaskListModel!
     
     private var menuIsVisible = false
     
-    #warning("Other features to add: filter list, task priority")
+    #warning("Other features to add: task priority")
 }
 
 extension HWTaskListViewController {
@@ -21,6 +22,8 @@ extension HWTaskListViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        searchBar.delegate = self
         
         navigationItem.title = "Assignments"
         navigationItem.rightBarButtonItem = editButtonItem
@@ -96,6 +99,26 @@ extension HWTaskListViewController: HWTaskListModelDelegate {
     func dataChanged() {
         tableView.reloadData()
     }
+    
+    func courseFilterAlert() {
+        let alert: UIAlertController
+        let courses = HomeworkTaskPersistence().courses
+        if !courses.isEmpty {
+            alert = UIAlertController(title: "Choose a course", message: nil, preferredStyle: .alert)
+            for course in courses {
+                let filterAction = UIAlertAction(title: course, style: .default) { (action) -> Void in
+                    self.model.filterByCourse(course)
+                }
+                alert.addAction(filterAction)
+            }
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+        } else {
+            alert = UIAlertController(title: "You have no saved courses", message: "Save courses to your list through the menu", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .cancel))
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension HWTaskListViewController: UISearchBarDelegate {
@@ -136,6 +159,22 @@ extension HWTaskListViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(cancelAction)
         
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction private func filterList(_ sender: UIButton) {
+        toggleMenu()
+        
+        let alert = UIAlertController(title: "Filter list to...", message: nil, preferredStyle: .alert)
+        
+        FilterMode.allCases.forEach { filterMode in
+            let filterAction = UIAlertAction(title: filterMode.title, style: .default) { (action) -> Void in
+                self.model.filterList(by: filterMode)
+            }
+            alert.addAction(filterAction)
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(alert, animated: true, completion: nil)
     }
 }

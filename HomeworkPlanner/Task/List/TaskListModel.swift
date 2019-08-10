@@ -15,8 +15,25 @@ enum SortMode: CaseIterable {
     }
 }
 
+enum FilterMode: CaseIterable {
+    case dueToday
+    case dueTomorrow
+    case dueThisWeek
+    case byCourse
+    
+    var title: String {
+        switch self {
+        case .dueToday: return "Assignments due today"
+        case .dueTomorrow: return "Assignments due tomorrow"
+        case .dueThisWeek: return "Assignments due this week"
+        case .byCourse: return "Assignments for course..."
+        }
+    }
+}
+
 protocol HWTaskListModelDelegate: class {
     func dataChanged()
+    func courseFilterAlert()
 }
 
 final class HWTaskListModel {
@@ -62,6 +79,46 @@ extension HWTaskListModel {
         delegate?.dataChanged()
     }
     
+    func filterList(by filterMode: FilterMode) {
+        switch filterMode {
+        case .dueToday:
+            displayedTasks = getTasks(for: Date())
+        case .dueTomorrow:
+            if let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: Date()) {
+                 displayedTasks = getTasks(for: tomorrow)
+            }
+        case .dueThisWeek:
+            if let aWeekFromToday = Calendar.current.date(byAdding: .day, value: 7, to: Date()) {
+                displayedTasks = displayedTasks.filter {
+                    $0.deadline > Date() && $0.deadline < aWeekFromToday
+                }
+            }
+        case .byCourse:
+            delegate?.courseFilterAlert()
+        }
+        delegate?.dataChanged()
+    }
+    
+    func filterByCourse(_ course: String) {
+        displayedTasks = displayedTasks.filter { $0.course == course }
+        delegate?.dataChanged()
+    }
+    
+    // Retrieve all homework tasks due on a given date
+    func getTasks(for date: Date) -> [HomeworkTask] {
+        // get date components
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.day, .month, .year], from: date)
+        
+        let tasksForDate = displayedTasks.filter { task in
+            let deadlineComponents = calendar.dateComponents([.day, .month, .year], from: task.deadline)
+            
+            return deadlineComponents == dateComponents
+        }
+        
+        return tasksForDate
+    }
+    
     func searchList(searchText: String) {
         guard !searchText.isEmpty else {
             displayedTasks = storedTasks
@@ -72,6 +129,7 @@ extension HWTaskListModel {
         displayedTasks = storedTasks.filter { task in
             task.name.lowercased().contains(searchText.lowercased()) || task.course.lowercased().contains(searchText.lowercased()) || task.taskDescription?.lowercased().contains(searchText.lowercased()) ?? false
         }
+        delegate?.dataChanged()
     }
     
     func delete(at index: Int) {

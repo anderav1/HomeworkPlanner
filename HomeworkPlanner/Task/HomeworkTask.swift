@@ -9,6 +9,7 @@ struct HomeworkTask: Codable {
     let reminderId: String?
     let alarmSettings: AlarmSettings?
     
+    // for use with calendar
     var alarmDate: Date? {
         if let timeUnitRawValue = alarmSettings?.timeUnit, let timeUnit = TimeUnit(rawValue: timeUnitRawValue), let timeAmount = alarmSettings?.timeAmount {
             let timeInterval = TimeInterval(timeUnit.secondsPerUnit * timeAmount)

@@ -81,7 +81,7 @@
                                 </prototypes>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8kG-wp-Ikm" userLabel="Menu Stack">
-                                <rect key="frame" x="0.0" y="64" width="250" height="200"/>
+                                <rect key="frame" x="0.0" y="64" width="250" height="250"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hob-eN-9dz">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
@@ -128,8 +128,23 @@
                                             <action selector="sortList:" destination="haO-4j-Ga5" eventType="touchUpInside" id="7uU-2i-Cxu"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bna-dr-vuf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qob-n6-0dD">
                                         <rect key="frame" x="0.0" y="150" width="250" height="50"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="KlM-Lu-BRG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="5" maxX="0.0" maxY="5"/>
+                                        <state key="normal" title="Filter Assignments...">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="filterList:" destination="haO-4j-Ga5" eventType="touchUpInside" id="xjD-Sc-D9D"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bna-dr-vuf">
+                                        <rect key="frame" x="0.0" y="200" width="250" height="50"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="igi-69-Kdm"/>
@@ -175,6 +190,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuStackView" destination="8kG-wp-Ikm" id="OYJ-r3-EXr"/>
+                        <outlet property="searchBar" destination="2hT-5v-ixw" id="cnw-eZ-hYr"/>
                         <outlet property="tableView" destination="Jjm-JY-XKw" id="f7g-Tx-CgD"/>
                     </connections>
                 </viewController>
